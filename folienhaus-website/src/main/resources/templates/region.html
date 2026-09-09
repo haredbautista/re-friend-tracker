@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Autofolierung ' + ${region.name} + ' | Das Folienhaus', 'Autofolierung, Lackschutzfolie und Scheibentönung für ' + ${region.name} + ' und Umgebung – Fachbetrieb Das Folienhaus in Mühlhausen-Ehingen bei Singen.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrumen"><a th:href="@{/}">Start</a> › <span>Autofolierung <span th:text="${region.name}">Region</span></span></nav>
+      <h1>Autofolierung in <span th:text="${region.name}">Region</span></h1>
+      <p class="lead">Individuelles Design &amp; Schutz für Ihr Fahrzeug – <span th:text="${region.distanceNote}">Hinweis</span>.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="intro">Sie kommen aus <span th:text="${region.name}">Region</span> und möchten Ihr Fahrzeug folieren, schützen oder die Scheiben tönen lassen?
+          Unsere Werkstatt in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> ist gut erreichbar – und die Fahrt lohnt sich:
+          Sie erhalten Beratung, Umsetzung und Nachsorge aus einer Hand.</p>
+        <h2>Unsere Leistungen für <span th:text="${region.name}">Region</span></h2>
+        <ul class="checklist">
+          <li th:each="s : ${services}"><a th:href="@{${s.path}}" th:text="${s.title}">Leistung</a> – <span th:text="${s.teaser}">Teaser</span></li>
+        </ul>
+      </div>
+      <aside class="info-card sticky">
+        <h3>Anfahrt &amp; Kontakt</h3>
+        <p th:text="${company.address.oneLine()}">Adresse</p>
+        <p th:each="h : ${company.openingHours}" th:text="${h.days + ' ' + h.times}">Zeiten</p>
+        <a class="btn btn-primary btn-block" th:href="@{/kontakt}">Angebot anfragen</a>
+      </aside>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: faq(${faq})}"></section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

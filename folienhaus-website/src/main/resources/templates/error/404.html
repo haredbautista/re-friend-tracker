@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Seite nicht gefunden | Das Folienhaus', 'Die angeforderte Seite existiert nicht.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="section">
+    <div class="container narrow center">
+      <p class="eyebrow">Fehler 404</p>
+      <h1>Diese Seite gibt es nicht</h1>
+      <p class="lead">Die Adresse ist vielleicht veraltet oder falsch geschrieben.</p>
+      <a class="btn btn-primary" th:href="@{/}">Zur Startseite</a>
+      <a class="btn btn-outline" th:href="@{/leistungen}">Zu den Leistungen</a>
+    </div>
+  </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

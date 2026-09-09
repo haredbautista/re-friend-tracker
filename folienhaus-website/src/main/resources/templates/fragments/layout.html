@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Gemeinsamer <head>: erwartet die Variablen pageTitle und pageDescription -->
+  <th:block th:fragment="pageHead(pageTitle, pageDescription)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle}">Das Folienhaus</title>
+    <meta name="description" th:content="${pageDescription}">
+    <meta property="og:site_name" th:content="${company.name}">
+    <meta property="og:title" th:content="${pageTitle}">
+    <meta property="og:description" th:content="${pageDescription}">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script type="application/ld+json" th:utext="${structuredData}"></script>
+  </th:block>
+</head>
+<body>
+
+<header th:fragment="header" class="site-header">
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <div class="container header-inner">
+    <a th:href="@{/}" class="brand" aria-label="Zur Startseite">
+      <img th:src="@{/img/logo.svg}" alt="" width="40" height="40">
+      <span class="brand-text">
+        <span class="brand-name" th:text="${company.name}">Das Folienhaus</span>
+        <span class="brand-sub">Mühlhausen-Ehingen · Hegau</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li th:each="item : ${navItems}">
+          <a th:href="@{${item.path}}" th:text="${item.label}"
+             th:classappend="${currentPath == item.path or (item.path != '/' and #strings.startsWith(currentPath, item.path))} ? 'active' : ''">Start</a>
+        </li>
+      </ul>
+      <a class="btn btn-primary btn-sm nav-cta" th:href="@{/kontakt}">Angebot anfragen</a>
+    </nav>
+  </div>
+</header>
+
+<footer th:fragment="footer" class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-brand" th:text="${company.name}">Das Folienhaus</p>
+      <p th:text="${company.tagline}">Autofolierung, Lackschutz &amp; Scheibentönung</p>
+      <address>
+        <span th:text="${company.address.street}">Straße</span><br>
+        <span th:text="${company.address.zip + ' ' + company.address.city}">PLZ Ort</span>
+      </address>
+    </div>
+    <div>
+      <h2 class="footer-heading">Leistungen</h2>
+      <ul class="footer-links">
+        <li th:each="s : ${allServices}"><a th:href="@{${s.path}}" th:text="${s.title}">Leistung</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-heading">Kontakt</h2>
+      <ul class="footer-links">
+        <li><a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></li>
+        <li><a th:href="'mailto:' + ${company.contact.email}" th:text="${company.contact.email}">E-Mail</a></li>
+        <li><a th:href="${company.social.instagram}" rel="noopener" target="_blank" th:text="'Instagram ' + ${company.social.instagramHandle}">Instagram</a></li>
+      </ul>
+      <h2 class="footer-heading">Öffnungszeiten</h2>
+      <ul class="footer-links">
+        <li th:each="h : ${company.openingHours}"><span th:text="${h.days}">Mo–Fr</span>: <span th:text="${h.times}">09–12</span></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-heading">Einzugsgebiet</h2>
+      <ul class="footer-links footer-links-inline">
+        <li th:each="r : ${allRegions}"><a th:href="@{${r.path}}" th:text="${r.name}">Region</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span th:text="${currentYear}">2026</span> <span th:text="${company.legalName}">Das Folienhaus</span></span>
+    <nav aria-label="Rechtliches">
+      <a th:href="@{/impressum}">Impressum</a>
+      <a th:href="@{/datenschutz}">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<th:block th:fragment="scripts">
+  <script th:src="@{/js/main.js}" defer></script>
+</th:block>
+
+<!-- Wiederverwendbare Bausteine -->
+<section th:fragment="cta" class="cta-band">
+  <div class="container cta-inner">
+    <div>
+      <h2>Bereit für einen neuen Look?</h2>
+      <p>Schicken Sie uns Ihre Fahrzeugdaten – wir melden uns mit einem individuellen Angebot.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-primary" th:href="@{/kontakt}">Angebot anfragen</a>
+      <a class="btn btn-outline" th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Anrufen</a>
+    </div>
+  </div>
+</section>
+
+<div th:fragment="serviceCard(s)" class="card service-card">
+  <div class="card-icon" th:insert="~{fragments/icons :: icon(${s.icon})}"></div>
+  <h3 th:text="${s.title}">Leistung</h3>
+  <p th:text="${s.teaser}">Teaser</p>
+  <a class="link-arrow" th:href="@{${s.path}}">Mehr erfahren</a>
+</div>
+
+<section th:fragment="faq(items)" class="section" id="faq">
+  <div class="container narrow">
+    <h2 class="section-title">Häufige Fragen</h2>
+    <div class="faq-list">
+      <details th:each="f : ${items}" class="faq-item">
+        <summary th:text="${f.question}">Frage</summary>
+        <p th:text="${f.answer}">Antwort</p>
+      </details>
+    </div>
+  </div>
+</section>
+</body>
+</html>

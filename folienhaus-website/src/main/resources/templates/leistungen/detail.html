@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead(${service.metaTitle}, ${service.metaDescription})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrumen">
+        <a th:href="@{/}">Start</a> › <a th:href="@{/leistungen}">Leistungen</a> › <span th:text="${service.title}">Leistung</span>
+      </nav>
+      <h1 th:text="${service.title}">Leistung</h1>
+      <p class="lead" th:text="${service.teaser}">Teaser</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <p class="intro" th:text="${service.intro}">Intro</p>
+        <h2>Ihre Vorteile</h2>
+        <ul class="checklist">
+          <li th:each="b : ${service.benefits}" th:text="${b}">Vorteil</li>
+        </ul>
+        <div th:if="${!service.variants.isEmpty()}">
+          <h2>Varianten</h2>
+          <div class="variant-list">
+            <div class="variant" th:each="v : ${service.variants}">
+              <h3 th:text="${v.name}">Variante</h3>
+              <p th:text="${v.description}">Beschreibung</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="info-card sticky">
+        <h3>Angebot anfragen</h3>
+        <p>Schicken Sie uns Fahrzeugmodell und Wunsch – wir melden uns zeitnah mit einem individuellen Angebot.</p>
+        <a class="btn btn-primary btn-block" th:href="@{/kontakt(leistung=${service.slug})}">Jetzt anfragen</a>
+        <p class="muted">Oder telefonisch: <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Weitere Leistungen</h2>
+      <div class="grid grid-3">
+        <th:block th:each="s : ${otherServices}"><div th:replace="~{fragments/layout :: serviceCard(${s})}"></div></th:block>
+      </div>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

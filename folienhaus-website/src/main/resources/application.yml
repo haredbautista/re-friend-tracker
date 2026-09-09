@@ -1,0 +1,76 @@
+# ------------------------------------------------------------------
+# Firmendaten "Das Folienhaus"
+#
+# Quelle: öffentlich auffindbare Angaben (Suchmaschinen-Snippets der
+# Seiten das-folienhaus.de/kontakt und /impressum, Stand 09/2026).
+# Die Werte konnten nicht direkt auf der Website gegengeprüft werden –
+# bitte vor Livegang vom Betrieb bestätigen lassen.
+# Einträge in eckigen Klammern sind Platzhalter, die noch zu füllen sind.
+# ------------------------------------------------------------------
+company:
+  name: Das Folienhaus
+  legal-name: Das Folienhaus
+  owner: Dennis Steinke
+  tagline: Autofolierung, Lackschutz & Scheibentönung im Hegau
+  founded-year: "2020"
+  experience-years: "8"
+  base-url: https://www.das-folienhaus.de
+  address:
+    street: Hohenkräher-Brühl 15a
+    zip: "78259"
+    city: Mühlhausen-Ehingen
+    region: Baden-Württemberg
+    country: Deutschland
+  contact:
+    # Im Kontakt-Snippet: +49 151 70666511; im Impressum-Snippet: +49 176 71183405.
+    # Welche Nummer aktuell gilt, bitte beim Betrieb klären.
+    phone: "+4915170666511"
+    phone-display: "+49 151 70666511"
+    email: info@das-folienhaus.de
+  opening-hours:
+    - days: Montag – Freitag
+      times: 09:00 – 12:00 Uhr
+    - days: Montag – Freitag
+      times: 13:00 – 18:00 Uhr
+  legal:
+    vat-id: "[USt-IdNr. eintragen]"
+    responsible-person: Dennis Steinke
+    supervisory-authority: "[zuständige Behörde / Kammer eintragen, falls erforderlich]"
+  social:
+    instagram: https://www.instagram.com/das.folienhaus/
+    instagram-handle: "@das.folienhaus"
+
+spring:
+  application:
+    name: folienhaus-website
+  thymeleaf:
+    cache: true
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 7d
+  # E-Mail-Versand des Kontaktformulars: erst aktiv, wenn ein SMTP-Host gesetzt ist, z. B.
+  #   SPRING_MAIL_HOST=smtp.example.de SPRING_MAIL_PORT=587 SPRING_MAIL_USERNAME=... SPRING_MAIL_PASSWORD=...
+  # mail:
+  #   host: smtp.example.de
+  #   port: 587
+  #   username: ...
+  #   password: ...
+  #   properties:
+  #     mail.smtp.auth: true
+  #     mail.smtp.starttls.enable: true
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

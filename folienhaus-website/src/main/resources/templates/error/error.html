@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Fehler | Das Folienhaus', 'Es ist ein Fehler aufgetreten.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="section">
+    <div class="container narrow center">
+      <p class="eyebrow">Fehler <span th:text="${status}">500</span></p>
+      <h1>Da ist etwas schiefgelaufen</h1>
+      <p class="lead">Bitte versuchen Sie es später noch einmal oder rufen Sie uns an:
+        <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></p>
+      <a class="btn btn-primary" th:href="@{/}">Zur Startseite</a>
+    </div>
+  </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

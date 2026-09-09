@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Impressum | Das Folienhaus', 'Impressum und Anbieterkennzeichnung von Das Folienhaus, Mühlhausen-Ehingen.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head"><div class="container"><h1>Impressum</h1></div></section>
+  <section class="section">
+    <div class="container narrow legal">
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p>
+        <span th:text="${company.legalName}">Das Folienhaus</span><br>
+        Inhaber: <span th:text="${company.owner}">Dennis Steinke</span><br>
+        <span th:text="${company.address.street}">Straße</span><br>
+        <span th:text="${company.address.zip + ' ' + company.address.city}">PLZ Ort</span><br>
+        <span th:text="${company.address.country}">Deutschland</span>
+      </p>
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a><br>
+        E-Mail: <a th:href="'mailto:' + ${company.contact.email}" th:text="${company.contact.email}">E-Mail</a>
+      </p>
+      <h2>Umsatzsteuer-Identifikationsnummer</h2>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: <span th:text="${company.legal.vatId}">[USt-IdNr.]</span></p>
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p><span th:text="${company.legal.responsiblePerson}">Dennis Steinke</span>, Anschrift wie oben.</p>
+      <h2>Streitbeilegung</h2>
+      <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+        Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+        zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte
+        der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
+      <h2>Urheberrecht</h2>
+      <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+        Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen
+        der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    </div>
+  </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

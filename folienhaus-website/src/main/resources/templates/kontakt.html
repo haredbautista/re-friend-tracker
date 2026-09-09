@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Kontakt & Angebot anfragen | Das Folienhaus', 'Kontaktieren Sie Das Folienhaus in Mühlhausen-Ehingen: Anfrage per Formular, Telefon oder E-Mail. Öffnungszeiten Mo–Fr 09–12 und 13–18 Uhr.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Kontakt</h1>
+      <p class="lead">Wir freuen uns auf Ihre Anfrage – per Formular, Telefon oder E-Mail.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split split-form">
+      <div>
+        <div th:if="${sent}" class="alert alert-success" role="status">
+          <strong>Vielen Dank!</strong> Ihre Anfrage ist bei uns eingegangen. Wir melden uns so schnell wie möglich.
+        </div>
+
+        <form th:action="@{/kontakt}" th:object="${contactForm}" method="post" class="form" novalidate>
+          <div th:if="${#fields.hasErrors('*')}" class="alert alert-error" role="alert">
+            Bitte prüfen Sie die markierten Felder.
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Name *</label>
+              <input id="name" type="text" th:field="*{name}" autocomplete="name" required th:errorclass="is-invalid">
+              <p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Fehler</p>
+            </div>
+            <div class="field">
+              <label for="email">E-Mail *</label>
+              <input id="email" type="email" th:field="*{email}" autocomplete="email" required th:errorclass="is-invalid">
+              <p class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Fehler</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="phone">Telefon</label>
+              <input id="phone" type="tel" th:field="*{phone}" autocomplete="tel" th:errorclass="is-invalid">
+              <p class="field-error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Fehler</p>
+            </div>
+            <div class="field">
+              <label for="vehicle">Fahrzeug (Marke, Modell, Baujahr)</label>
+              <input id="vehicle" type="text" th:field="*{vehicle}" placeholder="z. B. VW Golf 8, 2022" th:errorclass="is-invalid">
+              <p class="field-error" th:if="${#fields.hasErrors('vehicle')}" th:errors="*{vehicle}">Fehler</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="service">Gewünschte Leistung *</label>
+            <select id="service" th:field="*{service}" required th:errorclass="is-invalid">
+              <option value="">Bitte wählen …</option>
+              <option th:each="s : ${services}" th:value="${s.title}" th:text="${s.title}">Leistung</option>
+              <option value="Sonstiges">Sonstiges / Beratung</option>
+            </select>
+            <p class="field-error" th:if="${#fields.hasErrors('service')}" th:errors="*{service}">Fehler</p>
+          </div>
+
+          <div class="field">
+            <label for="message">Ihre Nachricht *</label>
+            <textarea id="message" rows="6" th:field="*{message}" required th:errorclass="is-invalid"
+                      placeholder="Was möchten Sie umsetzen lassen? Farbe, Folie, Umfang, Wunschtermin …"></textarea>
+            <p class="field-error" th:if="${#fields.hasErrors('message')}" th:errors="*{message}">Fehler</p>
+          </div>
+
+          <!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input id="website" type="text" th:field="*{website}" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field field-check">
+            <input id="privacyAccepted" type="checkbox" th:field="*{privacyAccepted}">
+            <label for="privacyAccepted">Ich habe die <a th:href="@{/datenschutz}" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage zu. *</label>
+            <p class="field-error" th:if="${#fields.hasErrors('privacyAccepted')}" th:errors="*{privacyAccepted}">Fehler</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg">Anfrage senden</button>
+          <p class="muted">* Pflichtfelder</p>
+        </form>
+      </div>
+
+      <aside class="info-card">
+        <h3 th:text="${company.name}">Das Folienhaus</h3>
+        <p><span th:replace="~{fragments/icons :: icon('pin')}"></span>
+          <span><span th:text="${company.address.street}">Straße</span><br>
+          <span th:text="${company.address.zip + ' ' + company.address.city}">PLZ Ort</span></span></p>
+        <p><span th:replace="~{fragments/icons :: icon('phone')}"></span> <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></p>
+        <p><span th:replace="~{fragments/icons :: icon('mail')}"></span> <a th:href="'mailto:' + ${company.contact.email}" th:text="${company.contact.email}">E-Mail</a></p>
+        <h4>Öffnungszeiten</h4>
+        <p th:each="h : ${company.openingHours}"><span th:replace="~{fragments/icons :: icon('clock')}"></span> <span th:text="${h.days + ' ' + h.times}">Zeiten</span></p>
+        <h4>Anfahrt</h4>
+        <p>Werkstatt im Gewerbegebiet Hohenkräher-Brühl in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span>, wenige Minuten von Singen.</p>
+        <a class="btn btn-outline btn-block" th:href="'https://www.google.com/maps/search/?api=1&query=' + ${#uris.escapeQueryParam(company.address.oneLine())}" target="_blank" rel="noopener">Route in Google Maps öffnen</a>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

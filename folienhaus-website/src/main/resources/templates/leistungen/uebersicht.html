@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Leistungen – Autofolierung, Lackschutz, Scheibentönung | Das Folienhaus', 'Alle Leistungen von Das Folienhaus in Mühlhausen-Ehingen: Autofolierung, Lackschutzfolierung, Scheibentönung, Detailing, Lackierung und Pulverbeschichtung.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Unsere Leistungen</h1>
+      <p class="lead">Individuelle Fahrzeugveredelung – von der Vollfolierung bis zur Pulverbeschichtung.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid-3">
+      <th:block th:each="s : ${services}"><div th:replace="~{fragments/layout :: serviceCard(${s})}"></div></th:block>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

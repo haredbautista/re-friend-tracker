@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Das Folienhaus – Autofolierung, Lackschutz & Scheibentönung in Mühlhausen-Ehingen', 'Fachbetrieb für Fahrzeugfolierung bei Singen: Vollfolierung, Teilfolierung, Lackschutzfolie und Scheibentönung. Individuelle Beratung, Angebot in wenigen Tagen.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main id="main">
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">Fachbetrieb für Fahrzeugfolierung · Hegau &amp; Bodensee</p>
+      <h1>Perfekte Autogestaltung<br><span class="accent">mit hochwertigen Folierungen</span></h1>
+      <p class="lead">Vollfolierung, Teilfolierung, Lackschutz und Scheibentönung – seit <span th:text="${company.foundedYear}">2020</span> in
+        <span th:text="${company.address.city}">Mühlhausen-Ehingen</span>, nur wenige Minuten von Singen entfernt.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" th:href="@{/kontakt}">Kostenloses Angebot anfragen</a>
+        <a class="btn btn-ghost btn-lg" th:href="@{/leistungen}">Leistungen ansehen</a>
+      </div>
+      <ul class="hero-facts">
+        <li><strong th:text="${company.experienceYears} + '+'">8+</strong><span>Jahre Berufserfahrung</span></li>
+        <li><strong>3–5</strong><span>Werktage Bearbeitungszeit</span></li>
+        <li><strong>ab 1.800 €</strong><span>Vollfolierung</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Unsere Leistungen</h2>
+        <p>Individuelle Fahrzeugveredelung aus einer Hand – mit Folien namhafter Qualitätshersteller.</p>
+      </div>
+      <div class="grid grid-3">
+        <th:block th:each="s : ${services}"><div th:replace="~{fragments/layout :: serviceCard(${s})}"></div></th:block>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">So läuft’s ab</h2>
+        <p>Von der Anfrage bis zur Abholung – transparent und unkompliziert.</p>
+      </div>
+      <ol class="steps">
+        <li th:each="step : ${processSteps}">
+          <span class="step-number" th:text="${step.number}">1</span>
+          <h3 th:text="${step.title}">Schritt</h3>
+          <p th:text="${step.description}">Beschreibung</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container split">
+      <div>
+        <h2 class="section-title">Warum Das Folienhaus?</h2>
+        <ul class="checklist">
+          <li><strong>Erfahrung:</strong> Gründer <span th:text="${company.owner}">Dennis Steinke</span> bringt über <span th:text="${company.experienceYears}">8</span> Jahre Berufserfahrung in der Fahrzeugfolierung mit.</li>
+          <li><strong>Qualität:</strong> Passgenau zugeschnittene Folien von Qualitätsherstellern, bewährte Verarbeitungsmethoden.</li>
+          <li><strong>Alles aus einer Hand:</strong> Folierung, Lackschutz, Scheibentönung, Detailing, Lackierung und Pulverbeschichtung.</li>
+          <li><strong>Gut erreichbar:</strong> Werkstatt in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> – wenige Minuten von Singen, zentral im Hegau.</li>
+        </ul>
+        <a class="btn btn-outline" th:href="@{/ueber-uns}">Mehr über uns</a>
+      </div>
+      <div class="info-card">
+        <h3>Werkstatt &amp; Öffnungszeiten</h3>
+        <p><span th:replace="~{fragments/icons :: icon('pin')}"></span> <span th:text="${company.address.oneLine()}">Adresse</span></p>
+        <p th:each="h : ${company.openingHours}"><span th:replace="~{fragments/icons :: icon('clock')}"></span> <span th:text="${h.days + ' ' + h.times}">Zeiten</span></p>
+        <p><span th:replace="~{fragments/icons :: icon('phone')}"></span> <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></p>
+        <p><span th:replace="~{fragments/icons :: icon('mail')}"></span> <a th:href="'mailto:' + ${company.contact.email}" th:text="${company.contact.email}">E-Mail</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Autofolierung in Ihrer Region</h2>
+      <p>Kunden aus dem gesamten Hegau, vom Bodensee und aus dem Schwarzwald-Baar-Kreis vertrauen uns.</p>
+      <ul class="tag-list">
+        <li th:each="r : ${regions}"><a th:href="@{${r.path}}" th:text="${r.name}">Region</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section th:replace="~{fragments/layout :: faq(${faq})}"></section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

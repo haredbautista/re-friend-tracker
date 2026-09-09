@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Über uns – Unsere Leidenschaft, Ihr Stil | Das Folienhaus', 'Das Folienhaus wurde 2020 von Dennis Steinke gegründet. Über 8 Jahre Erfahrung in der Fahrzeugfolierung – Qualität und Kundenorientierung im Fokus.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Unsere Leidenschaft, Ihr Stil</h1>
+      <p class="lead">Erfahren Sie mehr über unser Team und unsere Expertise.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container split">
+      <div>
+        <h2>Wer wir sind</h2>
+        <p><span th:text="${company.name}">Das Folienhaus</span> wurde <span th:text="${company.foundedYear}">2020</span> von
+          <strong th:text="${company.owner}">Dennis Steinke</strong> als Betrieb für Fahrzeugfolierung gegründet.
+          Mit über <span th:text="${company.experienceYears}">8</span> Jahren Berufserfahrung in diesem Bereich steht er mit seinem Team
+          für herausragende Qualität und Kundenservice.</p>
+        <p>Unser Team verwandelt Fahrzeuge mit passgenau zugeschnittenen Folien von Qualitätsherstellern und bewährten Methoden.
+          Ob Vollfolierung, Teilfolierung, Spezialeffekte, Scheibentönung oder Schutzfolien – wir beraten ehrlich und arbeiten präzise.</p>
+        <h2>Unsere Werkstatt</h2>
+        <p>Sie finden uns in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> im Hegau, nur wenige Minuten von Singen entfernt
+          und gut erreichbar vom Bodensee, aus Konstanz, Villingen-Schwenningen und Tuttlingen.</p>
+      </div>
+      <div class="info-card">
+        <h3>Auf einen Blick</h3>
+        <dl class="facts">
+          <dt>Gründung</dt><dd th:text="${company.foundedYear}">2020</dd>
+          <dt>Inhaber</dt><dd th:text="${company.owner}">Dennis Steinke</dd>
+          <dt>Erfahrung</dt><dd th:text="'über ' + ${company.experienceYears} + ' Jahre'">über 8 Jahre</dd>
+          <dt>Standort</dt><dd th:text="${company.address.oneLine()}">Adresse</dd>
+          <dt>Instagram</dt><dd><a th:href="${company.social.instagram}" target="_blank" rel="noopener" th:text="${company.social.instagramHandle}">@das.folienhaus</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">So arbeiten wir</h2>
+      <ol class="steps">
+        <li th:each="step : ${processSteps}">
+          <span class="step-number" th:text="${step.number}">1</span>
+          <h3 th:text="${step.title}">Schritt</h3>
+          <p th:text="${step.description}">Beschreibung</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

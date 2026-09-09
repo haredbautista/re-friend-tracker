@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Preise für Autofolierung & Lackschutz | Das Folienhaus', 'Preisorientierung für Vollfolierung, Teilfolierung, Lackschutzfolie und Scheibentönung. Vollfolierung ab ca. 1.800 €. Individuelles Angebot auf Anfrage.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Preise</h1>
+      <p class="lead">Die Preise variieren je nach Fahrzeug, Aufwand und Folie. Hier eine erste Orientierung – das konkrete Angebot erstellen wir individuell.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow">
+      <div class="table-wrap">
+        <table class="price-table">
+          <thead><tr><th scope="col">Leistung</th><th scope="col">Preis</th><th scope="col">Hinweis</th></tr></thead>
+          <tbody>
+            <tr th:each="p : ${prices}">
+              <td th:text="${p.service}">Leistung</td>
+              <td class="price" th:text="${p.price}">Preis</td>
+              <td th:text="${p.note}">Hinweis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">Alle Preise verstehen sich als unverbindliche Orientierung. Bearbeitungszeit in der Regel 3–5 Werktage.</p>
+      <a class="btn btn-primary" th:href="@{/kontakt}">Individuelles Angebot anfragen</a>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: faq(${faq})}"></section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>
