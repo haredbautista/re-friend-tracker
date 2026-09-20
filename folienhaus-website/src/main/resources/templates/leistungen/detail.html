@@ -22,6 +22,11 @@
         <ul class="checklist">
           <li th:each="b : ${service.benefits}" th:text="${b}">Vorteil</li>
         </ul>
+        <div class="image-strip" th:if="${!images.isEmpty()}">
+          <figure th:each="i : ${images}" class="gallery-item" th:classappend="${i.height > i.width} ? 'portrait' : ''">
+            <a th:href="@{/galerie(kategorie=${service.galleryCategory})}"><img th:src="@{${i.path}}" th:alt="${i.alt}" th:width="${i.width}" th:height="${i.height}" loading="lazy" decoding="async"></a>
+          </figure>
+        </div>
         <div th:if="${!service.variants.isEmpty()}">
           <h2>Varianten</h2>
           <div class="variant-list">
@@ -34,7 +39,8 @@
       </div>
       <aside class="info-card sticky">
         <h3>Angebot anfragen</h3>
-        <p>Schicken Sie uns Fahrzeugmodell und Wunsch – wir melden uns zeitnah mit einem individuellen Angebot.</p>
+        <p class="price-tag" th:text="${service.priceNote}">Preis</p>
+        <p>Schicken Sie uns Fahrzeugmodell und Wunsch – wir melden uns zeitnah mit einem individuellen Angebot. Finanzierung in Teilbeträgen möglich.</p>
         <a class="btn btn-primary btn-block" th:href="@{/kontakt(leistung=${service.slug})}">Jetzt anfragen</a>
         <p class="muted">Oder telefonisch: <a th:href="'tel:' + ${company.contact.phone}" th:text="${company.contact.phoneDisplay}">Telefon</a></p>
       </aside>

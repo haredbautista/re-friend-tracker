@@ -1,6 +1,7 @@
 package de.folienhaus.website.web;
 
 import de.folienhaus.website.service.ContentService;
+import de.folienhaus.website.service.JsonContentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PageController {
 
     private final ContentService content;
+    private final JsonContentRepository json;
 
-    public PageController(ContentService content) {
+    public PageController(ContentService content, JsonContentRepository json) {
         this.content = content;
+        this.json = json;
     }
 
     @GetMapping("/")
@@ -23,6 +26,9 @@ public class PageController {
         model.addAttribute("processSteps", content.processSteps());
         model.addAttribute("faq", content.faq());
         model.addAttribute("regions", content.regions());
+        model.addAttribute("partners", json.partners());
+        model.addAttribute("reviews", json.reviews());
+        model.addAttribute("galleryTeaser", json.gallery().stream().limit(6).toList());
         return "index";
     }
 
@@ -30,6 +36,8 @@ public class PageController {
     public String prices(Model model) {
         model.addAttribute("prices", content.prices());
         model.addAttribute("faq", content.faq());
+        model.addAttribute("tintPackages", content.tintPackages());
+        model.addAttribute("ppfPackages", content.ppfPackages());
         return "preise";
     }
 

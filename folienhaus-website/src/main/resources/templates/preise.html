@@ -24,8 +24,46 @@
           </tbody>
         </table>
       </div>
-      <p class="muted">Alle Preise verstehen sich als unverbindliche Orientierung. Bearbeitungszeit in der Regel 3–5 Werktage.</p>
+      <p class="muted">Alle Preise verstehen sich als unverbindliche Orientierung und variieren je nach Ausführung, Baujahr und Lackfarbe. Bearbeitungszeit in der Regel 3–5 Werktage.</p>
       <a class="btn btn-primary" th:href="@{/kontakt}">Individuelles Angebot anfragen</a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Scheibentönung – Pakete</h2>
+      <p>Je nachdem, wie groß die Scheiben am Fahrzeug sind und wie viele getönt werden sollen, variiert der Preis.</p>
+      <div class="package-grid">
+        <div th:each="p : ${tintPackages}" class="package" th:classappend="${p.highlighted} ? 'package-highlight' : ''">
+          <h3 th:text="${p.name}">Paket</h3>
+          <p class="package-price" th:text="${p.price}">Preis</p>
+          <ul><li th:each="i : ${p.includes}" th:text="${i}">Umfang</li></ul>
+          <a class="btn btn-outline btn-sm" th:href="@{/kontakt(leistung='scheibentoenung')}">Jetzt anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Steinschlagschutz – Pakete</h2>
+      <p>Selbstheilende Lackschutzfolie von SunTek. Preise variieren je nach Ausführung, Baujahr und Lackfarbe.</p>
+      <div class="package-grid">
+        <div th:each="p : ${ppfPackages}" class="package" th:classappend="${p.highlighted} ? 'package-highlight' : ''">
+          <h3 th:text="${p.name}">Paket</h3>
+          <p class="package-price" th:text="${p.price}">Preis</p>
+          <ul><li th:each="i : ${p.includes}" th:text="${i}">Umfang</li></ul>
+          <a class="btn btn-outline btn-sm" th:href="@{/kontakt(leistung='steinschlagschutzfolierung')}">Jetzt anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2 class="section-title">Folierung bequem in Teilbeträgen zahlen?</h2>
+      <p>Wir beraten Sie gerne. Kommen Sie vorbei und erhalten Sie unverbindliche Informationen über eine Finanzierung.</p>
+      <a class="btn btn-primary" th:href="@{/kontakt}">Finanzierung anfragen</a>
     </div>
   </section>
   <section th:replace="~{fragments/layout :: faq(${faq})}"></section>

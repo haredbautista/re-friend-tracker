@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead(${post.title} + ' | Das Folienhaus', ${post.excerpt})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Brotkrumen"><a th:href="@{/}">Start</a> › <a th:href="@{/blog}">Ratgeber</a> › <span th:text="${post.title}">Titel</span></nav>
+      <h1 th:text="${post.title}">Titel</h1>
+      <p class="lead"><time th:datetime="${post.date}" th:text="${#temporals.format(post.date, 'd. MMMM yyyy', new java.util.Locale('de'))}">Datum</time></p>
+    </div>
+  </section>
+  <article class="section">
+    <div class="container narrow post-body">
+      <img th:if="${post.image != null}" th:src="@{'/img/blog/' + ${post.image}}" th:alt="${post.imageAlt}" class="post-hero" width="1200" height="800">
+      <div th:utext="${post.contentHtml}">Inhalt</div>
+    </div>
+  </article>
+  <section class="section section-alt" th:if="${!morePosts.isEmpty()}">
+    <div class="container">
+      <h2 class="section-title">Weitere Beiträge</h2>
+      <div class="grid grid-3">
+        <article th:each="p : ${morePosts}" class="card post-card">
+          <h3 class="post-title"><a th:href="@{${p.path}}" th:text="${p.title}">Titel</a></h3>
+          <p th:text="${p.excerpt}">Auszug</p>
+          <a class="link-arrow" th:href="@{${p.path}}">Weiterlesen</a>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

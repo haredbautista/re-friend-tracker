@@ -15,11 +15,30 @@
       <div>
         <h2>Wer wir sind</h2>
         <p><span th:text="${company.name}">Das Folienhaus</span> wurde <span th:text="${company.foundedYear}">2020</span> von
-          <strong th:text="${company.owner}">Dennis Steinke</strong> als Betrieb für Fahrzeugfolierung gegründet.
-          Mit über <span th:text="${company.experienceYears}">8</span> Jahren Berufserfahrung in diesem Bereich steht er mit seinem Team
-          für herausragende Qualität und Kundenservice.</p>
-        <p>Unser Team verwandelt Fahrzeuge mit passgenau zugeschnittenen Folien von Qualitätsherstellern und bewährten Methoden.
-          Ob Vollfolierung, Teilfolierung, Spezialeffekte, Scheibentönung oder Schutzfolien – wir beraten ehrlich und arbeiten präzise.</p>
+          <strong th:text="${company.owner}">Dennis Steinke</strong> als Fahrzeugfolierungs-Betrieb gegründet.
+          Dennis verfügt über mehr als <span th:text="${company.experienceYears}">10</span> Jahre Berufserfahrung in diesem Bereich.
+          Der Fokus liegt auf Qualität und Kundenorientierung: Sie als Kunde stehen im Mittelpunkt. Zur tatkräftigen Unterstützung
+          hilft ihm sein Bruder Kevin Steinke.</p>
+        <p>Heute betreut das Team Kunden weit über die Bodenseeregion hinaus – regelmäßig auch aus der Schweiz und Österreich.
+          Über 3.000 Fahrzeugfolierungen wurden bisher realisiert, vom Alltagsfahrzeug bis zum exklusiven Sportwagen.</p>
+
+        <h2>Hinter jedem Unternehmen steckt eine Geschichte</h2>
+        <p class="muted">Im Gespräch mit Dennis Steinke, Gründer von Das Folienhaus</p>
+        <h3>Wie bist du zur Fahrzeugfolierung gekommen?</h3>
+        <p>Eigentlich fing alles schon in meiner Kindheit an. Mein Vater hat mir früh das Schrauben an Fahrzeugen beigebracht.
+          Sein Lieblingsspruch war immer: „Was andere können, das können wir doch auch.“ Dieser Satz begleitet mich bis heute.
+          Das klassische Reparieren hat mich aber nie wirklich erfüllt – mir fehlte dieser echte Wow-Effekt, wenn man ein Fahrzeug komplett verändert.</p>
+        <h3>Wann wurde aus dem Hobby ein Beruf?</h3>
+        <p>2013 haben mein Vater, mein Bruder und ich gemeinsam eine kleine Werkstatt gemietet und ein Kleingewerbe gegründet.
+          Nach zwei Jahren bekam ich die Chance, bei einem größeren Folierungsbetrieb zu arbeiten. Dort war ich sechs Jahre tätig und habe
+          nahezu alles foliert – vom Opel Corsa bis hin zum Bugatti Chiron. Genau diese Vielfalt hat meinen Anspruch an Qualität geprägt.</p>
+        <h3>Warum ein eigenes Unternehmen?</h3>
+        <p>2020 war der richtige Zeitpunkt, meinen eigenen Weg zu gehen. Ich wollte meine eigenen Qualitätsstandards umsetzen, Kunden persönlich
+          beraten und jedes Fahrzeug so behandeln, als wäre es mein eigenes. Der Name kam mir spontan: Wenn Menschen mit Problemen an ihrem
+          Fahrzeug ins Autohaus fahren, warum sollte es für hochwertige Fahrzeugfolierungen nicht ein Folienhaus geben?</p>
+        <h3>Was ist deine Philosophie?</h3>
+        <p>Perfekte Ergebnisse entstehen nur, wenn man seine Arbeit mit Leidenschaft ausübt. Für mich ist jede Folierung mehr als nur ein Auftrag.
+          Jedes Fahrzeug verdient höchste Sorgfalt, Präzision und Liebe zum Detail.</p>
         <h2>Unsere Werkstatt</h2>
         <p>Sie finden uns in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> im Hegau, nur wenige Minuten von Singen entfernt
           und gut erreichbar vom Bodensee, aus Konstanz, Villingen-Schwenningen und Tuttlingen.</p>
@@ -30,7 +49,10 @@
         <dl class="facts">
           <dt>Gründung</dt><dd th:text="${company.foundedYear}">2020</dd>
           <dt>Inhaber</dt><dd th:text="${company.owner}">Dennis Steinke</dd>
-          <dt>Erfahrung</dt><dd th:text="'über ' + ${company.experienceYears} + ' Jahre'">über 8 Jahre</dd>
+          <dt>Team</dt><dd>Dennis &amp; Kevin Steinke</dd>
+          <dt>Erfahrung</dt><dd th:text="'mehr als ' + ${company.experienceYears} + ' Jahre'">mehr als 10 Jahre</dd>
+          <dt>Folierungen</dt><dd>über 3.000</dd>
+          <dt>Kunden aus</dt><dd>Deutschland, Schweiz, Österreich</dd>
           <dt>Standort</dt><dd th:text="${company.address.oneLine()}">Adresse</dd>
           <dt>Instagram</dt><dd><a th:href="${company.social.instagram}" target="_blank" rel="noopener" th:text="${company.social.instagramHandle}">@das.folienhaus</a></dd>
         </dl>

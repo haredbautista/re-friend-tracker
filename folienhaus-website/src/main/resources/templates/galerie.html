@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Galerie – Referenzen | Das Folienhaus', 'Referenzarbeiten von Das Folienhaus: Vollfolierungen, Steinschlagschutz, Scheibentönung, Design- und Werbefolierung – vom Alltagsauto bis zum Sportwagen.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Unsere Arbeiten</h1>
+      <p class="lead">Ein Auszug aus über 3.000 Fahrzeugfolierungen – vom Alltagsauto bis zum Supersportwagen.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <nav class="filter-bar" aria-label="Galerie filtern">
+        <a th:each="c : ${categories}" th:href="@{/galerie(kategorie=${c.key})}" th:text="${c.label}"
+           th:classappend="${c.key == selected} ? 'active' : ''">Alle</a>
+      </nav>
+      <p class="muted" th:text="${items.size()} + ' Bilder'">Bilder</p>
+      <div class="gallery">
+        <figure th:each="i : ${items}" class="gallery-item" th:classappend="${i.height > i.width} ? 'portrait' : ''">
+          <a th:href="@{${i.path}}" target="_blank" rel="noopener">
+            <img th:src="@{${i.path}}" th:alt="${i.alt}" th:width="${i.width}" th:height="${i.height}" loading="lazy" decoding="async">
+          </a>
+          <figcaption th:text="${i.alt}">Beschreibung</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

@@ -8,27 +8,39 @@
   <section class="hero">
     <div class="container hero-inner">
       <img th:src="@{/img/logo-dark.png}" alt="" width="639" height="385" class="hero-logo" fetchpriority="high">
-      <p class="eyebrow">Fachbetrieb für Fahrzeugfolierung · Hegau &amp; Bodensee</p>
+      <p class="eyebrow">Premium Autofolierung in Singen am Hohentwiel</p>
       <h1>Perfekte Autogestaltung<br><span class="accent">mit hochwertigen Folierungen</span></h1>
-      <p class="lead">Vollfolierung, Teilfolierung, Lackschutz und Scheibentönung – seit <span th:text="${company.foundedYear}">2020</span> in
-        <span th:text="${company.address.city}">Mühlhausen-Ehingen</span>, nur wenige Minuten von Singen entfernt.</p>
+      <p class="lead">Vollfolierung, Teilfolierung, Scheibentönung, Werbefolierung, Designfolierung und Steinschlagschutz – seit
+        <span th:text="${company.foundedYear}">2020</span> in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span>, nur wenige Minuten von Singen entfernt.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" th:href="@{/kontakt}">Kostenloses Angebot anfragen</a>
         <a class="btn btn-ghost btn-lg" th:href="@{/leistungen}">Leistungen ansehen</a>
       </div>
       <ul class="hero-facts">
-        <li><strong th:text="${company.experienceYears} + '+'">8+</strong><span>Jahre Berufserfahrung</span></li>
+        <li><strong>3.000+</strong><span>Fahrzeuge veredelt</span></li>
+        <li><strong th:text="${company.experienceYears} + '+'">10+</strong><span>Jahre Berufserfahrung</span></li>
         <li><strong>3–5</strong><span>Werktage Bearbeitungszeit</span></li>
-        <li><strong>ab 1.800 €</strong><span>Vollfolierung</span></li>
+        <li><strong>DE · CH · AT</strong><span>Kunden aus 3 Ländern</span></li>
       </ul>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-tight">
+    <div class="container">
+      <ul class="usp-grid">
+        <li><h3>Über 3.000 Fahrzeuge veredelt</h3><p>Vom Alltagsauto bis zum Supersportwagen – tausendfach bewährte Qualität.</p></li>
+        <li><h3>Von Kunden ausgezeichnet</h3><p>Top-Bewertungen auf Google für sauberes Handwerk und echtes Ergebnis.</p></li>
+        <li><h3>Nur Premiumfolien</h3><p>Wir verarbeiten ausschließlich Premiumfolien, darunter 3M, Avery Dennison &amp; ORAFOL.</p></li>
+        <li><h3>Maximaler Lackschutz</h3><p>Unsichtbarer Schutz mit PPF von STEK &amp; SunTek – für dauerhaften Werterhalt.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-alt">
     <div class="container">
       <div class="section-head">
         <h2 class="section-title">Unsere Leistungen</h2>
-        <p>Individuelle Fahrzeugveredelung aus einer Hand – mit Folien namhafter Qualitätshersteller.</p>
+        <p>Individuelle Fahrzeugveredelung aus einer Hand – mit Premiumfolien von 3M, Avery Dennison, ORAFOL, SunTek und STEK.</p>
       </div>
       <div class="grid grid-3">
         <th:block th:each="s : ${services}"><div th:replace="~{fragments/layout :: serviceCard(${s})}"></div></th:block>
@@ -36,7 +48,36 @@
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section video-section">
+    <div class="container split">
+      <div>
+        <h2 class="section-title">Einblick in die Werkstatt</h2>
+        <p>Ein kurzer Blick auf unsere Arbeit in Mühlhausen-Ehingen: Beratung, Folienauswahl und Verarbeitung – alles unter einem Dach.</p>
+        <a class="btn btn-primary" th:href="@{/galerie}">Zur Galerie</a>
+      </div>
+      <div class="video-frame video-portrait">
+        <video th:src="@{/media/werkstatt.mp4}" th:poster="@{/img/galerie/werkstatt-poster.jpg}" controls playsinline preload="metadata" width="608" height="1080">
+          Ihr Browser kann dieses Video nicht abspielen.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" th:if="${!galleryTeaser.isEmpty()}">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Aktuelle Arbeiten</h2>
+        <p>Ein Auszug aus unseren Referenzen – alle Bilder in der <a th:href="@{/galerie}">Galerie</a>.</p>
+      </div>
+      <div class="gallery gallery-teaser">
+        <figure th:each="i : ${galleryTeaser}" class="gallery-item" th:classappend="${i.height > i.width} ? 'portrait' : ''">
+          <a th:href="@{/galerie}"><img th:src="@{${i.path}}" th:alt="${i.alt}" th:width="${i.width}" th:height="${i.height}" loading="lazy" decoding="async"></a>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="section-head">
         <h2 class="section-title">So läuft’s ab</h2>
@@ -52,15 +93,31 @@
     </div>
   </section>
 
+  <section class="section section-alt" th:if="${!reviews.isEmpty()}">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Das sagen unsere Kunden</h2>
+        <p>Bewertungen unserer Kunden auf Google.</p>
+      </div>
+      <div class="grid grid-3 reviews">
+        <blockquote th:each="r : ${reviews}" class="review">
+          <p th:text="${r.text}">Text</p>
+          <footer><strong th:text="${r.author}">Name</strong> · <span th:text="${r.date}">Datum</span></footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container split">
       <div>
         <h2 class="section-title">Warum Das Folienhaus?</h2>
         <ul class="checklist">
-          <li><strong>Erfahrung:</strong> Gründer <span th:text="${company.owner}">Dennis Steinke</span> bringt über <span th:text="${company.experienceYears}">8</span> Jahre Berufserfahrung in der Fahrzeugfolierung mit.</li>
-          <li><strong>Qualität:</strong> Passgenau zugeschnittene Folien von Qualitätsherstellern, bewährte Verarbeitungsmethoden.</li>
-          <li><strong>Alles aus einer Hand:</strong> Folierung, Lackschutz, Scheibentönung, Detailing, Lackierung und Pulverbeschichtung.</li>
-          <li><strong>Gut erreichbar:</strong> Werkstatt in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> – wenige Minuten von Singen, zentral im Hegau.</li>
+          <li><strong>Langjährige Erfahrung:</strong> Über 3.000 erfolgreiche Folierungen sprechen für sich – Gründer <span th:text="${company.owner}">Dennis Steinke</span> bringt mehr als <span th:text="${company.experienceYears}">10</span> Jahre Berufserfahrung mit.</li>
+          <li><strong>Höchste Präzision:</strong> Echte Handwerksarbeit mit Liebe zum Detail sorgt für ein makelloses und langlebiges Ergebnis.</li>
+          <li><strong>Premium-Qualität:</strong> Ausschließlich erstklassige Materialien, die Ihr Fahrzeug perfekt schützen und veredeln.</li>
+          <li><strong>Individuelle Beratung:</strong> Persönlicher Service steht an erster Stelle – Ihre Wünsche werden maßgeschneidert umgesetzt.</li>
+          <li><strong>Gut erreichbar:</strong> Werkstatt in <span th:text="${company.address.city}">Mühlhausen-Ehingen</span> – wenige Minuten von Singen, auch aus Villingen-Schwenningen, vom Bodensee und aus der Schweiz schnell erreichbar.</li>
         </ul>
         <a class="btn btn-outline" th:href="@{/ueber-uns}">Mehr über uns</a>
       </div>
@@ -74,10 +131,20 @@
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt partners-section" th:if="${!partners.isEmpty()}">
+    <div class="container">
+      <h2 class="section-title">Unsere Folienpartner</h2>
+      <p>Wir verarbeiten ausschließlich Premiumfolien namhafter Hersteller.</p>
+      <ul class="partner-list">
+        <li th:each="p : ${partners}"><img th:src="@{${p.path}}" th:alt="'Logo ' + ${p.name}" loading="lazy" height="48"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <h2 class="section-title">Autofolierung in Ihrer Region</h2>
-      <p>Kunden aus dem gesamten Hegau, vom Bodensee und aus dem Schwarzwald-Baar-Kreis vertrauen uns.</p>
+      <p>Kunden aus dem gesamten Hegau, vom Bodensee, aus dem Schwarzwald-Baar-Kreis sowie aus der Schweiz und Österreich vertrauen uns.</p>
       <ul class="tag-list">
         <li th:each="r : ${regions}"><a th:href="@{${r.path}}" th:text="${r.name}">Region</a></li>
       </ul>

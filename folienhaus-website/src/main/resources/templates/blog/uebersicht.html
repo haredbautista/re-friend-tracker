@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{fragments/layout :: pageHead('Ratgeber & Blog | Das Folienhaus', 'Wissenswertes rund um Autofolierung, Steinschlagschutz und Lackschutz: Kosten, Haltbarkeit, Pflege und Tipps vom Fachbetrieb.')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: header}"></header>
+<main id="main">
+  <section class="page-head">
+    <div class="container">
+      <h1>Ratgeber</h1>
+      <p class="lead">Antworten auf die häufigsten Fragen rund um Folierung, Lackschutz und Pflege.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid-3">
+      <article th:each="p : ${posts}" class="card post-card">
+        <a th:href="@{${p.path}}" class="post-image" th:if="${p.image != null}">
+          <img th:src="@{'/img/blog/' + ${p.image}}" th:alt="${p.imageAlt}" loading="lazy" decoding="async" width="800" height="533">
+        </a>
+        <time th:datetime="${p.date}" th:text="${#temporals.format(p.date, 'd. MMMM yyyy', new java.util.Locale('de'))}" class="muted">Datum</time>
+        <h2 class="post-title"><a th:href="@{${p.path}}" th:text="${p.title}">Titel</a></h2>
+        <p th:text="${p.excerpt}">Auszug</p>
+        <a class="link-arrow" th:href="@{${p.path}}">Weiterlesen</a>
+      </article>
+    </div>
+  </section>
+  <section th:replace="~{fragments/layout :: cta}"></section>
+</main>
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+<th:block th:replace="~{fragments/layout :: scripts}"></th:block>
+</body>
+</html>

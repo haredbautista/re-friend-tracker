@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,9 +23,10 @@ class WebsitePagesTest {
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "/", "/leistungen", "/leistungen/autofolierung", "/leistungen/lackschutzfolierung",
-            "/leistungen/scheibentoenung", "/leistungen/detailing", "/leistungen/lackierung-pulverbeschichtung",
-            "/preise", "/ueber-uns", "/kontakt", "/impressum", "/datenschutz",
+            "/", "/leistungen", "/leistungen/autofolierung", "/leistungen/steinschlagschutzfolierung",
+            "/leistungen/lackschutzfolierung", "/leistungen/scheibentoenung", "/leistungen/designerstellung",
+            "/leistungen/werbefolierung", "/preise", "/galerie", "/galerie?kategorie=steinschlagschutz",
+            "/ueber-uns", "/blog", "/kontakt", "/impressum", "/datenschutz",
             "/autofolierung/singen", "/autofolierung/bodensee", "/autofolierung/villingen-schwenningen"
     })
     void pagesRenderWithCompanyData(String path) throws Exception {
@@ -44,6 +46,33 @@ class WebsitePagesTest {
                 .andExpect(content().string(containsString("Scheibentönung")))
                 .andExpect(content().string(containsString("09:00 – 12:00 Uhr")))
                 .andExpect(content().string(containsString("application/ld+json")));
+    }
+
+    @Test
+    void pricesPageShowsVerifiedPackages() throws Exception {
+        mvc.perform(get("/preise"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("ab 2.200 €")))
+                .andExpect(content().string(containsString("Front-Paket")))
+                .andExpect(content().string(containsString("ab 2.450 €")))
+                .andExpect(content().string(containsString("7 Scheiben")));
+    }
+
+    @Test
+    void galleryFiltersByCategory() throws Exception {
+        mvc.perform(get("/galerie").param("kategorie", "scheibentoenung"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("class=\"gallery-item")))
+                .andExpect(content().string(not(containsString("steinschlagschutz-"))));
+    }
+
+    @Test
+    void blogPostRendersAndUnknownSlugIs404() throws Exception {
+        String overview = mvc.perform(get("/blog")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        java.util.regex.Matcher m = java.util.regex.Pattern.compile("href=\"/blog/([a-z0-9-]+)\"").matcher(overview);
+        org.junit.jupiter.api.Assertions.assertTrue(m.find(), "Blog-Übersicht enthält keinen Beitrag");
+        mvc.perform(get("/blog/" + m.group(1))).andExpect(status().isOk());
+        mvc.perform(get("/blog/gibt-es-nicht")).andExpect(status().isNotFound());
     }
 
     @Test

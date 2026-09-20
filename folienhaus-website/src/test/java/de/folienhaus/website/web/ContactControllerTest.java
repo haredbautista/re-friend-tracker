@@ -82,4 +82,11 @@ class ContactControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("value=\"Scheibentönung\" selected")));
     }
+
+    @Test
+    void preselectedPpfServiceViaQueryParam() throws Exception {
+        mvc.perform(get("/kontakt").param("leistung", "steinschlagschutzfolierung"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("value=\"Steinschlagschutzfolierung\" selected")));
+    }
 }

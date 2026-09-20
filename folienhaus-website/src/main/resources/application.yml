@@ -1,19 +1,19 @@
 # ------------------------------------------------------------------
 # Firmendaten "Das Folienhaus"
 #
-# Quelle: öffentlich auffindbare Angaben (Suchmaschinen-Snippets der
-# Seiten das-folienhaus.de/kontakt und /impressum, Stand 09/2026).
-# Die Werte konnten nicht direkt auf der Website gegengeprüft werden –
-# bitte vor Livegang vom Betrieb bestätigen lassen.
+# Quelle: die bisherige Website das-folienhaus.de (Impressum, Kontakt, Über uns, Preise), abgerufen am 20.09.2026.
+# Öffnungszeiten stammen aus dem Branchenbucheintrag bei 11880.com, nicht von der Website.
+# Bitte vor Livegang vom Betrieb bestätigen lassen.
+
 # Einträge in eckigen Klammern sind Platzhalter, die noch zu füllen sind.
 # ------------------------------------------------------------------
 company:
   name: Das Folienhaus
   legal-name: Das Folienhaus
   owner: Dennis Steinke
-  tagline: Autofolierung, Lackschutz & Scheibentönung im Hegau
+  tagline: Premium Autofolierung in Singen am Hohentwiel
   founded-year: "2020"
-  experience-years: "8"
+  experience-years: "10"
   base-url: https://www.das-folienhaus.de
   address:
     street: Hohenkräher-Brühl 15a
@@ -22,7 +22,7 @@ company:
     region: Baden-Württemberg
     country: Deutschland
   contact:
-    # Im Kontakt-Snippet: +49 151 70666511; im Impressum-Snippet: +49 176 71183405.
+    # Kontaktseite und Footer der Website nennen +49 151 70666511, das Impressum +49 176 71183405.
     # Welche Nummer aktuell gilt, bitte beim Betrieb klären.
     phone: "+4915170666511"
     phone-display: "+49 151 70666511"

@@ -3,6 +3,7 @@ package de.folienhaus.website.service;
 import de.folienhaus.website.domain.FaqItem;
 import de.folienhaus.website.domain.NavItem;
 import de.folienhaus.website.domain.PriceItem;
+import de.folienhaus.website.domain.PricePackage;
 import de.folienhaus.website.domain.ProcessStep;
 import de.folienhaus.website.domain.Region;
 import de.folienhaus.website.domain.ServiceOffering;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 /**
  * Zentrale Stelle für redaktionelle Inhalte (Leistungen, Regionen, Preise, FAQ).
- * Die Inhalte sind bewusst im Code hinterlegt, damit die Website ohne Datenbank läuft.
+ * Texte und Preise folgen den Angaben der bisherigen Website das-folienhaus.de (Stand September 2026).
  */
 @Service
 public class ContentService {
@@ -22,7 +23,9 @@ public class ContentService {
             new NavItem("Start", "/"),
             new NavItem("Leistungen", "/leistungen"),
             new NavItem("Preise", "/preise"),
+            new NavItem("Galerie", "/galerie"),
             new NavItem("Über uns", "/ueber-uns"),
+            new NavItem("Ratgeber", "/blog"),
             new NavItem("Kontakt", "/kontakt")
     );
 
@@ -30,139 +33,215 @@ public class ContentService {
             new ServiceOffering(
                     "autofolierung",
                     "Autofolierung",
-                    "Vollfolierung, Teilfolierung und Spezialeffekte – ein neuer Look für Ihr Fahrzeug, ohne den Originallack anzutasten.",
+                    "Vollfolierung, Teilfolierung oder Designfolierung – die günstige und nachhaltige Alternative zum Lackieren, in matt, seidenmatt oder mit Metallic-Effekt.",
                     "wrap",
-                    "Die KFZ-Folierung ist eine nachhaltige und günstige Alternative zur klassischen Lackierung. "
-                            + "Wir verwandeln Ihr Fahrzeug mit passgenau zugeschnittenen Folien namhafter Hersteller "
-                            + "und bewährten Verarbeitungsmethoden.",
+                    "Die Autofolierung ist eine günstige und nachhaltige Alternative zum klassischen Lackieren. "
+                            + "Sie sind nicht mehr an die Farbpalette des Herstellers gebunden, sondern können sich frei entfalten: "
+                            + "Ihre Wunschfarbe in matt, seidenmatt oder mit Metallic-Effekt. Auf Wunsch folieren wir auch Türinnenkanten "
+                            + "und Türeinstiege mit, sodass das komplette Auto in der gewünschten Farbe erscheint. Auf dem Originallack "
+                            + "angebracht, lässt sich die Folie später rückstandslos entfernen.",
+                    "Vollfolierung ab 2.200 €",
                     List.of(
-                            "Schützt den Originallack und lässt sich rückstandsfrei entfernen",
-                            "Große Auswahl an Farben, Oberflächen und Effekten",
-                            "Deutlich günstiger und schneller als eine Neulackierung",
-                            "Ideal auch für Firmenfahrzeuge und Werbefolierung"
+                            "Lackschutz: Die Folie schützt den Originallack vor Steinschlag und Kratzern",
+                            "Optik: Farbwechsel und Oberflächen, die es ab Werk nicht gibt",
+                            "Individualisierung: Vollfolierung, Teilfolierung oder Designfolierung",
+                            "Nur Premiumfolien von 3M, Avery Dennison, ORAFOL und weiteren Qualitätsherstellern",
+                            "Finanzierung in Teilbeträgen möglich"
                     ),
                     List.of(
-                            new ServiceOffering.Variant("Vollfolierung", "Das komplette Fahrzeug erhält eine neue Farbe oder Oberfläche."),
+                            new ServiceOffering.Variant("Vollfolierung", "Das komplette Fahrzeug erhält eine neue Farbe oder Oberfläche – auf Wunsch inklusive Türeinstiegen."),
                             new ServiceOffering.Variant("Teilfolierung", "Einzelne Bauteile wie Dach, Motorhaube, Spiegel oder Zierleisten."),
-                            new ServiceOffering.Variant("Spezialeffekte", "Matt, Satin, Chrom, Carbon-Optik oder Farbwechsel-Folien."),
-                            new ServiceOffering.Variant("Design & Werbefolierung", "Individuelle Gestaltung und Beschriftung für Firmenfahrzeuge.")
+                            new ServiceOffering.Variant("Designfolierung", "Individuelle Designs und Muster, umgesetzt ab 500 €."),
+                            new ServiceOffering.Variant("Sportwagen & Premiumfahrzeuge", "Porsche, Ferrari, Mercedes, Tesla – vom Alltagsauto bis zum Supersportwagen.")
                     ),
-                    "Autofolierung in Mühlhausen-Ehingen | Das Folienhaus",
-                    "Voll- und Teilfolierung, Spezialeffekte und Werbefolierung vom Fachbetrieb in Mühlhausen-Ehingen bei Singen."
+                    "autofolierung",
+                    "Autofolierung in Mühlhausen-Ehingen bei Singen | Das Folienhaus",
+                    "Voll- und Teilfolierung mit Premiumfolien von 3M, Avery Dennison und ORAFOL. Vollfolierung ab 2.200 €, Finanzierung möglich. Fachbetrieb bei Singen am Hohentwiel."
+            ),
+            new ServiceOffering(
+                    "steinschlagschutzfolierung",
+                    "Steinschlagschutzfolierung",
+                    "Selbstheilende Lackschutzfolie (PPF) von SunTek und STEK – unsichtbarer Schutz vor Steinschlag, Kratzern und Vogelkot mit 5 bis 12 Jahren Garantie.",
+                    "shield",
+                    "Die Steinschlagschutzfolierung schützt den Originallack Ihres Fahrzeugs dauerhaft vor den meisten Gefahren auf der Straße. "
+                            + "Wir verarbeiten selbstheilende Lackschutzfolien von SunTek, deren Beschichtungen Steinschläge, Oberflächenkratzer, "
+                            + "Vogelkot und andere Verschmutzungen abwehren – und dabei nahezu unsichtbar bleiben. Die neueste 2-in-1-Technologie "
+                            + "verbindet die Schutzwirkung einer Lackschutzfolie mit den Eigenschaften einer Keramikbeschichtung.",
+                    "Front-Paket ab 2.450 €",
+                    List.of(
+                            "Sicherheit: Schutz vor Oberflächenschäden und Gefahren im Alltag",
+                            "Unversehrter Lack: Die Oberfläche bleibt über Jahre vorzeigbar",
+                            "Werterhalt beim späteren Verkauf",
+                            "Garantie: je nach Folienvariante 5 bis 12 Jahre Herstellergarantie",
+                            "Einfache Reparatur: Beschädigte Folie lässt sich schnell ersetzen",
+                            "Zahlung in Teilbeträgen möglich"
+                    ),
+                    List.of(
+                            new ServiceOffering.Variant("Front-Paket", "Motorhaube, Kotflügel, Stoßstange und Rückspiegel – ab 2.450 €."),
+                            new ServiceOffering.Variant("Erweitertes Front-Paket", "Front-Paket plus A-Säulen, Seitenschweller und Dach – ab 3.780 €."),
+                            new ServiceOffering.Variant("Vollfolierung", "Alle Bauteile mit Lackschutzfolie – ab 5.200 €.")
+                    ),
+                    "steinschlagschutz",
+                    "Steinschlagschutzfolierung mit SunTek PPF | Das Folienhaus",
+                    "Steinschlagschutzfolie von SunTek: Front-Paket ab 2.450 €, erweitertes Front-Paket ab 3.780 €, Vollfolierung ab 5.200 €. Selbstheilend, 5–12 Jahre Garantie."
             ),
             new ServiceOffering(
                     "lackschutzfolierung",
                     "Lackschutzfolierung",
-                    "Steinschlagschutz mit hochwertigen SunTek-Folien – erhält den Originallack und den Wert Ihres Fahrzeugs.",
+                    "Sicherheit, Langlebigkeit und Wertsteigerung: Komplett- oder Teilschutz für besonders gefährdete Bereiche wie Frontstoßstange, Motorhaube und Spiegel.",
                     "shield",
-                    "Steinschläge, Insekten, Streusalz und Kratzer setzen dem Lack täglich zu. "
-                            + "Eine Lackschutzfolie aus hochwertigem SunTek-Material schützt zuverlässig vor diesen Gefahren "
-                            + "und bewahrt den Originallack Ihres Fahrzeugs.",
+                    "Die Lackschutzfolierung schützt den Lack Ihres Fahrzeugs langfristig und steigert seinen Wert. Steinschläge, Kratzer "
+                            + "und Umwelteinflüsse bedrohen die Neuwertigkeit nicht mehr. Während eine vollständige Lackschutzfolierung das gesamte "
+                            + "Fahrzeug schützt, konzentriert sich die preiswertere Teilfolierung auf besonders gefährdete Bereiche wie Frontstoßstange, "
+                            + "Motorhaube und Seitenspiegel. Für spezielle Anforderungen setzen wir individuelle Lackschutzlösungen um.",
+                    "Preis nach Fahrzeug und Umfang",
                     List.of(
-                            "Unsichtbarer Schutz vor Steinschlag und Kratzern",
-                            "Werterhalt beim Wiederverkauf",
-                            "Selbstheilende Oberfläche bei leichten Kratzern (je nach Folie)",
-                            "Voll- oder Teilschutz je nach Budget"
+                            "Schutz vor äußeren Einflüssen: Steinschläge, Kratzer und Umweltschäden werden abgewehrt",
+                            "Wertsteigerung: Der makellose Lack erhöht den Wiederverkaufswert",
+                            "Langlebigkeit: Hochwertige Folien halten bei guter Pflege bis zu zehn Jahre",
+                            "Nahezu unsichtbar – Design und Farbe bleiben unverändert",
+                            "Rückstandslos entfernbar",
+                            "Auch für Firmenflotten: kombinierbar mit Werbefolierung"
                     ),
                     List.of(
-                            new ServiceOffering.Variant("Komplettschutz", "Vollständige Abdeckung aller lackierten Flächen mit Lackschutzfolie."),
-                            new ServiceOffering.Variant("Teilschutz", "Die günstigere Variante für gefährdete Bereiche wie Frontstoßstange, Motorhaube und Außenspiegel.")
+                            new ServiceOffering.Variant("Komplettschutz", "Vollständige Abdeckung aller lackierten Flächen."),
+                            new ServiceOffering.Variant("Teilschutz", "Die preiswertere Variante für Frontstoßstange, Motorhaube und Seitenspiegel."),
+                            new ServiceOffering.Variant("Individuelle Lösungen", "Maßgeschneiderter Schutz für spezielle Anforderungen oder Fahrzeugtypen.")
                     ),
-                    "Lackschutzfolierung & Steinschlagschutz | Das Folienhaus",
-                    "Lackschutzfolie mit SunTek-Folien: Komplett- oder Teilschutz für Frontstoßstange, Motorhaube und Spiegel. Fachbetrieb bei Singen."
+                    "steinschlagschutz",
+                    "Lackschutzfolierung | Das Folienhaus Mühlhausen-Ehingen",
+                    "Lackschutzfolierung vom Fachbetrieb: Komplett- oder Teilschutz, nahezu unsichtbar, bis zu zehn Jahre haltbar. Beratung in Mühlhausen-Ehingen."
             ),
             new ServiceOffering(
                     "scheibentoenung",
                     "Scheibentönung",
-                    "Hochwertige Tönungsfolien für mehr Privatsphäre, Sonnenschutz und einen sportlichen Look.",
+                    "Tönungsfolien für mehr Privatsphäre, weniger Hitze und UV-Belastung – Pakete ab 220 €.",
                     "sun",
-                    "Getönte Scheiben sorgen für mehr Privatsphäre im Innenraum, reduzieren die Aufheizung durch Sonneneinstrahlung "
-                            + "und werten das Erscheinungsbild Ihres Fahrzeugs auf. Wir verarbeiten hochwertige Tönungsfolien "
-                            + "passgenau auf Ihre Scheiben.",
+                    "Unsere Scheibenfolierung vereint Diskretion und Privatsphäre mit wirksamem Sonnenschutz: Die Folie reflektiert "
+                            + "Sonnenstrahlen, reduziert die Hitze im Innenraum und minimiert die UV-Belastung. Wir arbeiten mit Tönungsfolien "
+                            + "auf Nanotechnologie-Basis, die Bordelektronik nicht stören, und bieten verschiedene Tönungsgrade an – "
+                            + "von 70 % bis 95 %.",
+                    "ab 220 €",
                     List.of(
+                            "Kühlerer Innenraum: weniger Hitze durch Sonneneinstrahlung",
+                            "Weniger UV-Belastung für Insassen und Interieur",
+                            "Weniger Kraftstoffverbrauch durch Entlastung der Klimaanlage",
                             "Mehr Privatsphäre und Blendschutz",
-                            "Weniger Aufheizung des Innenraums",
-                            "Schutz des Interieurs vor UV-Strahlung",
-                            "Verschiedene Tönungsgrade wählbar"
+                            "Tönungsgrade 70 %, 85 % und 95 % wählbar"
                     ),
                     List.of(
-                            new ServiceOffering.Variant("Hintere Scheiben", "Seitenscheiben hinten und Heckscheibe."),
-                            new ServiceOffering.Variant("Einzelne Scheiben", "Der Preis richtet sich nach Größe und Anzahl der Scheiben.")
+                            new ServiceOffering.Variant("3 Scheiben", "Heckscheibe und hintere Seitenscheiben – 220 €."),
+                            new ServiceOffering.Variant("3 Scheiben + Dreiecksfenster", "240 €."),
+                            new ServiceOffering.Variant("5 Scheiben", "260 €."),
+                            new ServiceOffering.Variant("7 Scheiben", "300 €.")
                     ),
-                    "Scheibentönung | Das Folienhaus Mühlhausen-Ehingen",
-                    "Scheibentönung mit hochwertiger Tönungsfolie für Privatsphäre und Sonnenschutz. Fachbetrieb in Mühlhausen-Ehingen."
+                    "scheibentoenung",
+                    "Scheibentönung ab 220 € | Das Folienhaus",
+                    "Scheibenfolierung mit Tönungsgraden von 70 bis 95 %: 3 Scheiben 220 €, 5 Scheiben 260 €, 7 Scheiben 300 €. Fachbetrieb in Mühlhausen-Ehingen."
             ),
             new ServiceOffering(
-                    "detailing",
-                    "Detailing",
-                    "Professionelle Fahrzeugaufbereitung – damit Ihr Fahrzeug innen und außen wieder wie neu wirkt.",
+                    "designerstellung",
+                    "Designerstellung",
+                    "Individuelle Designs für Ihr Fahrzeug – erstellt in enger Zusammenarbeit zwischen Grafiker und Kunde, mit Vorschlägen aus verschiedenen Blickwinkeln.",
                     "sparkle",
-                    "Beim Detailing wird Ihr Fahrzeug gründlich und schonend aufbereitet: Lack, Felgen, Scheiben und Innenraum. "
-                            + "Die ideale Vorbereitung vor einer Folierung oder als eigenständige Leistung.",
+                    "Unsere Partner erstellen individuelle Designs für Ihr Fahrzeug. Die Designerstellung geschieht in enger Zusammenarbeit "
+                            + "zwischen Grafiker und Kunde: Sie erhalten Vorschläge aus verschiedenen Blickwinkeln und bringen Ihre Wünsche und Ideen ein. "
+                            + "Im Anschluss setzen wir das Design als Designfolierung auf Ihrem Fahrzeug um.",
+                    "individuell",
                     List.of(
-                            "Schonende Reinigung von Lack und Innenraum",
-                            "Optimale Vorbereitung für Folierung und Lackschutz",
-                            "Frischer Auftritt für Verkauf oder Alltag"
+                            "Zufriedenheitsgarantie: Wir sind erst zufrieden, wenn Sie es sind",
+                            "Ihre Wünsche und Ideen fließen direkt ins Design ein",
+                            "Vorschläge aus mehreren Perspektiven vor der Umsetzung",
+                            "Passende Designfolierung aus einer Hand"
                     ),
                     List.of(),
-                    "Fahrzeug-Detailing | Das Folienhaus",
-                    "Professionelle Fahrzeugaufbereitung innen und außen in Mühlhausen-Ehingen."
+                    "design",
+                    "Designerstellung für Fahrzeugfolierung | Das Folienhaus",
+                    "Individuelle Fahrzeugdesigns vom Grafiker – Entwürfe aus mehreren Blickwinkeln, anschließend Umsetzung als Designfolierung."
             ),
             new ServiceOffering(
-                    "lackierung-pulverbeschichtung",
-                    "Lackierung & Pulverbeschichtung",
-                    "Lackarbeiten und Pulverbeschichtung, z. B. für Felgen und Anbauteile.",
+                    "werbefolierung",
+                    "Werbefolierung",
+                    "Ihr Design in höchster Qualität auf dem Firmenfahrzeug – vergleichsweise günstige Werbung, die täglich unterwegs ist.",
                     "spray",
-                    "Ergänzend zur Folierung bieten wir Lackarbeiten und Pulverbeschichtung an – etwa für Felgen, "
-                            + "Zierleisten und andere Anbauteile. So erhält Ihr Fahrzeug ein rundum stimmiges Erscheinungsbild.",
+                    "Sie haben ein Design entworfen oder erhalten und möchten es in höchster Qualität auf Ihrem Fahrzeug anbringen? "
+                            + "Mit unserer Werbefolierung sind alle Farben realitätsnah und sehen aus wie erwartet. Gerne erstellen wir vorab ein "
+                            + "Design für Sie. Für Firmen ist die Werbefolierung besonders attraktiv, weil sie eine vergleichsweise günstige "
+                            + "Werbung darstellt – und nebenbei den Lack schützt.",
+                    "individuell",
                     List.of(
-                            "Robuste, langlebige Oberflächen",
-                            "Passend zum Folierungskonzept abgestimmt",
-                            "Alles aus einer Hand"
+                            "Günstige Werbung im Vergleich zu klassischen Kanälen",
+                            "Lackschutz inklusive – wie bei jeder Folierung",
+                            "Hebt Ihre Flotte hervor",
+                            "Designerstellung vorab möglich"
                     ),
                     List.of(),
-                    "Lackierung & Pulverbeschichtung | Das Folienhaus",
-                    "Lackarbeiten und Pulverbeschichtung für Felgen und Anbauteile – ergänzend zur Fahrzeugfolierung."
+                    "design",
+                    "Werbefolierung für Firmenfahrzeuge | Das Folienhaus",
+                    "Professionelle Werbefolierung für Transporter, Pkw und Flotten – realitätsnahe Farben, Designerstellung vorab möglich. Fachbetrieb bei Singen."
             )
     );
 
     private final List<Region> regions = List.of(
             new Region("singen", "Singen", "nur wenige Minuten von unserer Werkstatt entfernt"),
-            new Region("bodensee", "Bodensee", "Konstanz, Radolfzell, Überlingen und Umgebung"),
+            new Region("konstanz", "Konstanz", "Bodensee"),
+            new Region("bodensee", "Bodensee", "Konstanz, Radolfzell, Überlingen, Friedrichshafen und Umgebung"),
             new Region("villingen-schwenningen", "Villingen-Schwenningen", "Schwarzwald-Baar-Kreis"),
             new Region("tuttlingen", "Tuttlingen", "Landkreis Tuttlingen"),
             new Region("donaueschingen", "Donaueschingen", "Schwarzwald-Baar-Kreis"),
+            new Region("ravensburg", "Ravensburg", "Oberschwaben"),
+            new Region("waldshut", "Waldshut", "Hochrhein"),
             new Region("balingen", "Balingen", "Zollernalbkreis"),
             new Region("tuebingen", "Tübingen", "Raum Tübingen und Reutlingen"),
-            new Region("freiburg", "Freiburg", "Raum Freiburg im Breisgau")
+            new Region("freiburg", "Freiburg", "Raum Freiburg im Breisgau"),
+            new Region("schweiz", "Schweiz", "Zürich, Schaffhausen, Winterthur – viele Kunden reisen aus der Schweiz an")
     );
 
     private final List<PriceItem> prices = List.of(
-            new PriceItem("Vollfolierung", "ab ca. 1.800 €", "Der Preis variiert je nach Fahrzeug, Aufwand und Folie."),
+            new PriceItem("Vollfolierung", "ab 2.200 €", "Je nach Folie und Fahrzeug; auf Wunsch inklusive Türeinstiegen."),
             new PriceItem("Teilfolierung", "auf Anfrage", "Abhängig von Bauteil, Folie und Fahrzeug."),
-            new PriceItem("Lackschutzfolierung (Teilschutz)", "auf Anfrage", "Frontstoßstange, Motorhaube, Außenspiegel."),
-            new PriceItem("Lackschutzfolierung (Komplettschutz)", "auf Anfrage", "Vollständige Abdeckung aller Lackflächen."),
-            new PriceItem("Scheibentönung", "auf Anfrage", "Je nach Größe und Anzahl der Scheiben.")
+            new PriceItem("Designfolierung", "ab 500 €", "Je nach Aufwand des Designs."),
+            new PriceItem("Scheibentönung", "ab 220 €", "Pakete nach Anzahl der Scheiben, siehe unten."),
+            new PriceItem("Steinschlagschutz", "ab 2.450 €", "Pakete nach Umfang, siehe unten."),
+            new PriceItem("Designerstellung", "individuell", "Von wenig aufwendig bis zum großen Projekt."),
+            new PriceItem("Werbefolierung", "individuell", "Variiert wie alle Folierungen stark nach Umfang.")
+    );
+
+    private final List<PricePackage> tintPackages = List.of(
+            new PricePackage("3 Scheiben", "220 €", List.of("Heckscheibe", "Hintere Seitenscheiben"), false),
+            new PricePackage("3 Scheiben + Dreiecksfenster", "240 €", List.of("Heckscheibe", "Hintere Seitenscheiben", "Dreiecksfenster"), false),
+            new PricePackage("5 Scheiben", "260 €", List.of("Heckscheibe", "Alle hinteren Scheiben"), true),
+            new PricePackage("7 Scheiben", "300 €", List.of("Heckscheibe", "Alle hinteren Scheiben", "Zusätzliche Seitenscheiben"), false)
+    );
+
+    private final List<PricePackage> ppfPackages = List.of(
+            new PricePackage("Front-Paket", "ab 2.450 €", List.of("Motorhaube", "Kotflügel", "Stoßstange", "Rückspiegel"), false),
+            new PricePackage("Erweitertes Front-Paket", "ab 3.780 €", List.of("Front-Paket", "A-Säule", "Seitenschweller", "Dach"), true),
+            new PricePackage("Vollfolierung", "ab 5.200 €", List.of("Alle Bauteile"), false)
     );
 
     private final List<ProcessStep> processSteps = List.of(
             new ProcessStep(1, "Anfrage", "Sie schicken uns Fahrzeugdaten und Wunsch – per Formular, E-Mail oder Telefon."),
-            new ProcessStep(2, "Beratung & Angebot", "Wir beraten zu Folie, Farbe und Umfang und erstellen ein individuelles Angebot."),
-            new ProcessStep(3, "Termin & Umsetzung", "Wir arbeiten mit Hochdruck an Ihrer Folierung – in der Regel 3–5 Werktage."),
+            new ProcessStep(2, "Beratung & Angebot", "Wir beraten zu Folie, Farbe und Umfang, gerne auch vor Ort mit Folienmustern, und erstellen ein individuelles Angebot."),
+            new ProcessStep(3, "Termin & Umsetzung", "Wir arbeiten mit Hochdruck an Ihrer Folierung – in der Regel 3 bis 5 Werktage."),
             new ProcessStep(4, "Abholung", "Sie holen Ihr Fahrzeug ab und erhalten Pflegehinweise für eine lange Haltbarkeit.")
     );
 
     private final List<FaqItem> faq = List.of(
-            new FaqItem("Wie lange dauert eine Folierung?",
-                    "Wir arbeiten mit Hochdruck an Ihrer Folierung. Rechnen Sie in der Regel mit 3–5 Werktagen – je nach Umfang und Fahrzeug."),
             new FaqItem("Was kostet eine Vollfolierung?",
-                    "Eine Vollfolierung beginnt bei etwa 1.800 €. Der genaue Preis hängt von Fahrzeug, Aufwand und gewählter Folie ab – wir erstellen Ihnen gerne ein individuelles Angebot."),
-            new FaqItem("Schadet die Folie dem Lack?",
-                    "Nein. Eine fachgerecht verarbeitete Folie schützt den Originallack und lässt sich später wieder entfernen."),
+                    "Eine Vollfolierung kann je nach Folie und Fahrzeug im Preis stark variieren. Bei uns beginnt sie bei 2.200 €. Auf Wunsch können Sie die Folierung in Teilbeträgen zahlen."),
+            new FaqItem("Wie lange dauert die Folierung?",
+                    "Je nach Auslastung kann Ihre Folierung schon nach 3 Tagen fertig sein. Wir arbeiten mit Hochdruck und geben eine Wartezeit von 3 bis 5 Werktagen an."),
+            new FaqItem("Wie lange hält die Folie?",
+                    "Je nach Herstellerangabe und Pflege hält eine Folierung 3 bis 6 Jahre. Durch die professionelle Montage gewährleisten wir eine lange Lebensdauer. Lackschutzfolien halten bei guter Pflege bis zu zehn Jahre."),
+            new FaqItem("Erleidet der Lack Schäden durch eine Folierung?",
+                    "Nein. Der Lack wird durch die Folie geschützt. Auf dem Originallack angebracht, lässt sich die Folie später rückstandslos entfernen."),
             new FaqItem("Welche Folien verwendet ihr?",
-                    "Wir verarbeiten Folien namhafter Qualitätshersteller, für den Lackschutz zum Beispiel SunTek."),
+                    "Ausschließlich Premiumfolien, darunter 3M, Avery Dennison und ORAFOL. Für den Lackschutz verarbeiten wir PPF von SunTek und STEK."),
+            new FaqItem("Kann ich die Folierung finanzieren?",
+                    "Ja. Kommen Sie vorbei und erhalten Sie unverbindliche Informationen über eine Finanzierung in Teilbeträgen."),
             new FaqItem("Wo finde ich euch?",
-                    "Unsere Werkstatt liegt in Mühlhausen-Ehingen, nur wenige Minuten von Singen entfernt – gut erreichbar aus dem gesamten Hegau und vom Bodensee.")
+                    "Unsere Werkstatt liegt im Hohenkräher-Brühl 15a in Mühlhausen-Ehingen, nur wenige Minuten von Singen entfernt – gut erreichbar aus dem Hegau, vom Bodensee, aus Villingen-Schwenningen und aus der Schweiz.")
     );
 
     public List<NavItem> navigation() {
@@ -187,6 +266,14 @@ public class ContentService {
 
     public List<PriceItem> prices() {
         return prices;
+    }
+
+    public List<PricePackage> tintPackages() {
+        return tintPackages;
+    }
+
+    public List<PricePackage> ppfPackages() {
+        return ppfPackages;
     }
 
     public List<ProcessStep> processSteps() {

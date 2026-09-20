@@ -2,6 +2,7 @@ package de.folienhaus.website.web;
 
 import de.folienhaus.website.domain.ServiceOffering;
 import de.folienhaus.website.service.ContentService;
+import de.folienhaus.website.service.JsonContentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ServiceController {
 
     private final ContentService content;
+    private final JsonContentRepository json;
 
-    public ServiceController(ContentService content) {
+    public ServiceController(ContentService content, JsonContentRepository json) {
         this.content = content;
+        this.json = json;
     }
 
     @GetMapping("/leistungen")
@@ -30,6 +33,8 @@ public class ServiceController {
         ServiceOffering service = content.serviceBySlug(slug)
                 .orElseThrow(() -> new PageNotFoundException("Leistung nicht gefunden: " + slug));
         model.addAttribute("service", service);
+        model.addAttribute("images", json.gallery().stream()
+                .filter(i -> i.category().equals(service.galleryCategory())).limit(6).toList());
         model.addAttribute("otherServices",
                 content.services().stream().filter(s -> !s.slug().equals(slug)).toList());
         return "leistungen/detail";
