@@ -64,9 +64,7 @@ address { font-style: normal; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 72px; }
 .brand { display: flex; align-items: center; gap: 0.75rem; color: inherit; }
 .brand:hover { text-decoration: none; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-name { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; }
-.brand-sub { font-size: 0.72rem; color: var(--text-on-dark-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.brand-logo { height: 54px; width: auto; display: block; }
 .main-nav { display: flex; align-items: center; gap: 1.5rem; }
 .main-nav ul { list-style: none; display: flex; gap: 0.25rem; margin: 0; padding: 0; }
 .main-nav a { color: var(--text-on-dark); padding: 0.5rem 0.8rem; border-radius: 8px; font-weight: 500; }
@@ -111,6 +109,7 @@ address { font-style: normal; }
   pointer-events: none;
 }
 .hero-inner { position: relative; max-width: 780px; }
+.hero-logo { width: min(300px, 70vw); height: auto; display: block; margin-bottom: 1.5rem; }
 .hero h1 { font-size: clamp(2.3rem, 5.5vw, 4rem); margin-bottom: 1rem; }
 .hero .lead { color: var(--text-on-dark-muted); font-size: 1.2rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.75rem 0 2.5rem; }
@@ -155,6 +154,7 @@ address { font-style: normal; }
 .info-card h4 { margin-top: 1.25rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
 .info-card .btn { margin-top: 0.75rem; }
 .sticky { position: sticky; top: 90px; }
+.about-logo { width: 100%; max-width: 320px; height: auto; display: block; margin: 0 auto 1.25rem; }
 .facts { display: grid; grid-template-columns: auto 1fr; gap: 0.4rem 1rem; margin: 0; }
 .facts dt { color: var(--text-muted); }
 .facts dd { margin: 0; font-weight: 600; }
@@ -236,6 +236,7 @@ address { font-style: normal; }
 /* Footer */
 .site-footer { background: var(--bg); color: var(--text-on-dark-muted); padding: 3.5rem 0 1.5rem; margin-top: 0; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer-logo { width: 200px; height: auto; display: block; margin-bottom: 1rem; }
 .footer-brand { color: #fff; font-weight: 800; font-size: 1.2rem; margin-bottom: 0.25rem; }
 .footer-heading { color: #fff; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.75rem; }
 .footer-links { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.4rem; }
@@ -266,7 +267,7 @@ address { font-style: normal; }
   .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
   .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .form-row { grid-template-columns: 1fr; }
-  .brand-sub { display: none; }
+  .brand-logo { height: 46px; }
 }
 @media (max-width: 520px) {
   .footer-grid { grid-template-columns: 1fr; }

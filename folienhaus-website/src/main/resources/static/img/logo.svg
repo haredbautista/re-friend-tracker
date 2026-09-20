@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Das Folienhaus Logo">
-  <rect width="64" height="64" rx="14" fill="#e63b2e"/>
-  <path d="M14 40 L32 16 L50 40 Z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M20 46 h24" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-  <path d="M26 40 L38 24" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-</svg>

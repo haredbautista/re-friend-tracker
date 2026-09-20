@@ -77,6 +77,8 @@ class WebsitePagesTest {
     void staticAssetsAreServed() throws Exception {
         mvc.perform(get("/css/style.css")).andExpect(status().isOk());
         mvc.perform(get("/js/main.js")).andExpect(status().isOk());
-        mvc.perform(get("/img/logo.svg")).andExpect(status().isOk());
+        mvc.perform(get("/img/logo.png")).andExpect(status().isOk());
+        mvc.perform(get("/img/logo-dark.png")).andExpect(status().isOk());
+        mvc.perform(get("/img/favicon.png")).andExpect(status().isOk());
     }
 }

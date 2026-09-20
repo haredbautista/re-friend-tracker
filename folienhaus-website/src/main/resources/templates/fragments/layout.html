@@ -11,7 +11,8 @@
     <meta property="og:title" th:content="${pageTitle}">
     <meta property="og:description" th:content="${pageDescription}">
     <meta property="og:type" content="website">
-    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+    <link rel="icon" th:href="@{/img/favicon.png}" type="image/png">
+    <meta property="og:image" th:content="${company.baseUrl} + '/img/og-image.jpg'">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script type="application/ld+json" th:utext="${structuredData}"></script>
   </th:block>
@@ -22,11 +23,7 @@
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <div class="container header-inner">
     <a th:href="@{/}" class="brand" aria-label="Zur Startseite">
-      <img th:src="@{/img/logo.svg}" alt="" width="40" height="40">
-      <span class="brand-text">
-        <span class="brand-name" th:text="${company.name}">Das Folienhaus</span>
-        <span class="brand-sub">Mühlhausen-Ehingen · Hegau</span>
-      </span>
+      <img th:src="@{/img/logo-dark.png}" th:alt="${company.name} + ' – Carwrapping since ' + ${company.foundedYear}" width="639" height="385" class="brand-logo">
     </a>
     <button class="nav-toggle" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
@@ -46,6 +43,7 @@
 <footer th:fragment="footer" class="site-footer">
   <div class="container footer-grid">
     <div>
+      <img th:src="@{/img/logo-dark.png}" alt="" width="639" height="385" class="footer-logo" loading="lazy">
       <p class="footer-brand" th:text="${company.name}">Das Folienhaus</p>
       <p th:text="${company.tagline}">Autofolierung, Lackschutz &amp; Scheibentönung</p>
       <address>

@@ -78,7 +78,7 @@ src/main/java/de/folienhaus/website
 └── web/         Controller (Seiten, Leistungen, Regionen, Kontakt, SEO), ContactForm, StructuredData
 src/main/resources
 ├── templates/   Thymeleaf-Seiten + fragments/layout.html (Header, Footer, CTA, FAQ, Karten)
-├── static/      style.css, main.js, logo.svg, favicon.svg
+├── static/      style.css, main.js, logo.png, logo-dark.png (für dunkle Flächen), favicon.png, og-image.jpg
 └── application.yml
 src/test/java    MockMvc-Tests für alle Seiten, das Kontaktformular und die JSON-LD-Ausgabe
 ```

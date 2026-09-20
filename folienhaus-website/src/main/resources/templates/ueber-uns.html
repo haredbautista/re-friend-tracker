@@ -25,6 +25,7 @@
           und gut erreichbar vom Bodensee, aus Konstanz, Villingen-Schwenningen und Tuttlingen.</p>
       </div>
       <div class="info-card">
+        <img th:src="@{/img/logo.png}" th:alt="'Logo ' + ${company.name}" width="639" height="385" class="about-logo">
         <h3>Auf einen Blick</h3>
         <dl class="facts">
           <dt>Gründung</dt><dd th:text="${company.foundedYear}">2020</dd>
