@@ -1,0 +1,65 @@
+/* Prototyping – Übung 2, Aufgabe 1 (CSS)
+   Gemäss Aufgabenstellung wurde nur diese Datei bearbeitet.
+   index.html und der Ordner img/ sind unverändert. */
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* b) Die Überschrift soll rot sein. */
+h1 {
+    color: red;
+}
+
+/* b) Text aller Elemente mit der Klasse "important" in Grossbuchstaben. */
+.important {
+    text-transform: uppercase;
+}
+
+/* c) Hintergrundfarbe von <body> grau, Textfarbe weiss. */
+body {
+    background-color: gray;
+    color: white;
+}
+
+/* c) Element mit der Id "main":
+      i.   Hintergrundfarbe schwarz
+      ii.  Rahmen rot
+      iii. Breite 50 %
+      iv.  Abstand nach oben 50 Pixel
+      v.   Abstand zwischen Rahmen und Inhalt 10 Pixel
+   d) Ecken abrunden (border-radius) und mit "margin: auto" zentrieren.
+      "margin: 50px auto" ist die Kurzschreibweise für
+      oben/unten 50px und links/rechts auto. Damit bleibt der Abstand
+      nach oben aus c) erhalten und das Element ist horizontal zentriert. */
+#main {
+    background-color: black;
+    border: 2px solid red;
+    width: 50%;
+    margin: 50px auto;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* e) Liste: 10 Pixel Abstand nach oben pro List Item, fette Schrift. */
+li {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* e) Standard-Aufzählungszeichen durch img/bullet.png ersetzen. */
+ul {
+    list-style-image: url("img/bullet.png");
+}
+
+/* f) Bilder mit border-radius rund machen.
+      Die Bilder sind 100 x 100 Pixel gross, 50 % ergibt einen Kreis. */
+img {
+    border-radius: 50%;
+}
+
+/* g) Bilder mit Flexbox horizontal ausrichten. */
+.image-list {
+    display: flex;
+    justify-content: space-between;
+}
