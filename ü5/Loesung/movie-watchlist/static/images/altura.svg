@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9a227"/>
+      <stop offset="1" stop-color="#1b2a49"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="600" fill="url(#bg)"/>
+  <circle cx="200" cy="210" r="110" fill="#1b2a49" opacity="0.85"/>
+  <circle cx="200" cy="210" r="70" fill="#c9a227" opacity="0.6"/>
+  <rect x="24" y="24" width="352" height="552" fill="none" stroke="#ffffff" stroke-opacity="0.5" stroke-width="3"/>
+  <text x="200" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="#ffffff">Das Geheimnis</text>
+  <text x="200" y="466" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="bold" fill="#ffffff">von Altura</text>
+  <text x="200" y="560" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" opacity="0.8">REELSTACK ORIGINAL</text>
+</svg>
