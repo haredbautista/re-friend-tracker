@@ -4,6 +4,9 @@
 // Aufruf im Projektordner (liest DB_URI aus .env):
 //   npm run seed
 //
+// Läuft ausserdem automatisch bei "npm run build", also auch beim Deploy auf Netlify.
+// Dort kommt DB_URI aus den Umgebungsvariablen von Netlify.
+//
 // Es werden nur Daten eingefügt, wenn die Collection "movies" noch leer ist.
 import { MongoClient } from 'mongodb';
 import { readFileSync } from 'node:fs';

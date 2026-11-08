@@ -29,6 +29,8 @@ Gegenüber Übung 6 haben sich nur drei Dateien geändert:
 | `package.json`, `package-lock.json` | `npm i -D @sveltejs/adapter-netlify` ausgeführt, installiert ist Version 7.0.1 |
 | `vite.config.js` | Import `@sveltejs/adapter-netlify` und `adapter({ edge: false, split: false, publish: 'build' })`, genau wie im Tutorial |
 | `README.md` (im Projekt) | Kurzbeschreibung für die Startseite des GitHub-Repositorys |
+| `package.json`, `seed.js` | `npm run build` führt zuerst `seed.js` aus und füllt eine leere Datenbank mit den Demofilmen |
+| `netlify.toml` (im Projekt) | Build-Einstellungen und Abfrage von `DB_URI` beim «Deploy to Netlify»-Button |
 
 Hinweise dazu:
 
@@ -37,6 +39,24 @@ Hinweise dazu:
 - Die `.gitignore` enthielt bereits alle Zeilen aus dem Tutorial (`.output`, `.vercel`, `.netlify`,
   `/.svelte-kit`, `/build`). Sie schliesst ausserdem `.env` aus. Dein DB-Passwort landet also nicht auf GitHub.
 - `@sveltejs/adapter-auto` bleibt installiert, wird aber nicht mehr verwendet. Das Tutorial sagt nichts zum Entfernen.
+
+## Noch kein MongoDB Atlas? So legst du es an
+
+Schritte laut MongoDB-Dokumentation:
+
+1. Konto anlegen: https://www.mongodb.com/cloud/atlas/register und die E-Mail bestätigen.
+2. Auf «Project Overview» den Button «Create» klicken, «M0» wählen, Provider und Region wählen, Namen eingeben, «Create».
+3. Im «Security Quickstart» Username und Password eingeben, dann «Create Database User».
+   Verwende im Passwort nur Buchstaben und Ziffern. Die Zeichen `$ : / ? # [ ] @` müssten im Connection String
+   sonst kodiert werden.
+4. Unter «Security» auf «Database & Network Access», dann «IP Access List», «Add IP Address», `0.0.0.0/0`, «Confirm».
+5. Unter «Clusters» auf «Connect», dann «Drivers», Node.js wählen und den Connection String kopieren.
+   `<db_password>` durch dein Passwort ersetzen.
+
+Datenbank `ScreenStackDB` und Collection `movies` musst du nicht von Hand anlegen. `npm run build` führt zuerst
+`seed.js` aus. Ist die Collection leer, fügt das Skript die 10 Demofilme ein. MongoDB legt Datenbank und Collection
+beim ersten Einfügen an. Das passiert also beim ersten Deploy auf Netlify automatisch. Getestet mit einer leeren
+Datenbank: erster Build fügt 10 Filme ein, zweiter Build fügt nichts ein.
 
 ## Ein-Klick-Weg: «Deploy to Netlify»
 
