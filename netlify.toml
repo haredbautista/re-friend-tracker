@@ -1,0 +1,8 @@
+# Netlify-Konfiguration für Prototyping Übung 7 (Deployment).
+# Die SvelteKit-App liegt im Unterordner "deploy". Das ist eine Kopie von
+# ü7/Loesung/movie-watchlist mit einem Pfad ohne Umlaute.
+# Doku: https://docs.netlify.com/build/configure-builds/file-based-configuration/
+[build]
+  base = "deploy"
+  command = "npm run build"
+  publish = "build"

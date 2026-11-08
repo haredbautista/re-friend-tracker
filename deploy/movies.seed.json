@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Das Geheimnis von Altura",
+    "year": 2024,
+    "length": "120 Minuten",
+    "actors": ["Lena Herzog", "Maximilian Schröder", "Sophia Neumann"],
+    "poster": "/images/Altura.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Sternenwanderer",
+    "year": 2025,
+    "length": "143 Minuten",
+    "actors": ["Hannah Fischer", "Julian Becker", "Lara Weber"],
+    "poster": "/images/Sternenwanderer.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Flüsternde Schatten",
+    "year": 2023,
+    "length": "105 Minuten",
+    "actors": ["Emilie Schmidt", "Niklas Hoffmann", "Anna Meyer"],
+    "poster": "/images/Schatten.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Die letzte Ebene",
+    "year": 2026,
+    "length": "132 Minuten",
+    "actors": ["David Wagner", "Sarah Bauer", "Leon Schwarz"],
+    "poster": "/images/Ebene.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Chroniken von Morgen",
+    "year": 2027,
+    "length": "117 Minuten",
+    "actors": ["Marie Müller", "Tobias Lang", "Lisa Braun"],
+    "poster": "/images/Chroniken.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Die Wächter des Verborgenen",
+    "year": 2028,
+    "length": "150 Minuten",
+    "actors": ["Felix Zimmermann", "Charlotte Koch", "Alexander Krause"],
+    "poster": "/images/Waechter.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Nebel über Neustadt",
+    "year": 2029,
+    "length": "98 Minuten",
+    "actors": ["Nora Richter", "Simon Wolf", "Julia Hartmann"],
+    "poster": "/images/Nebel.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Das Lächeln der Medusa",
+    "year": 2030,
+    "length": "136 Minuten",
+    "actors": ["Max Müller", "Katharina Schmid", "Tim Schneider"],
+    "poster": "/images/Medusa.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Echo des Vergessens",
+    "year": 2022,
+    "length": "123 Minuten",
+    "actors": ["Anna Lehmann", "Fabian Engel", "Lea Frank"],
+    "poster": "/images/Echo.svg",
+    "watchlist": false
+  },
+  {
+    "title": "Der Traum von Unendlichkeit",
+    "year": 2024,
+    "length": "140 Minuten",
+    "actors": ["Lukas Wagner", "Mia Sommer", "Jan Schmidt"],
+    "poster": "/images/Traum.svg",
+    "watchlist": false
+  }
+]
