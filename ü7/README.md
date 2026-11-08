@@ -38,6 +38,20 @@ Hinweise dazu:
   `/.svelte-kit`, `/build`). Sie schliesst ausserdem `.env` aus. Dein DB-Passwort landet also nicht auf GitHub.
 - `@sveltejs/adapter-auto` bleibt installiert, wird aber nicht mehr verwendet. Das Tutorial sagt nichts zum Entfernen.
 
+## Ein-Klick-Weg: «Deploy to Netlify»
+
+Dieser Link kopiert nur den Ordner `deploy/` in ein neues Repository in deinem GitHub-Konto, fragt nach `DB_URI`
+und deployt die App:
+
+https://app.netlify.com/start/deploy?repository=https://github.com/haredbautista/re-friend-tracker&branch=claude/uebung-2-loesung-g29m9e&create_from_path=deploy
+
+Die Parameter `branch` und `create_from_path` sind in der Netlify-Doku einzeln beschrieben. Dass sie zusammen
+funktionieren, steht dort nicht. Ich konnte den Link nicht selbst testen, weil dafür eine Anmeldung bei Netlify
+nötig ist. Klappt er nicht, nimm den Schnellweg unten.
+
+Die Abfrage nach `DB_URI` kommt aus `[template.environment]` in `deploy/netlify.toml`.
+Vorher muss in Atlas die IP-Freigabe `0.0.0.0/0` eingetragen sein, siehe Schritt 2 weiter unten.
+
 ## Schnellweg: Deploy direkt aus dem Repository `re-friend-tracker`
 
 Die GitHub-Integration konnte kein neues Repository für dich anlegen. Deshalb liegt die App fertig im

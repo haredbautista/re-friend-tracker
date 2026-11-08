@@ -1,0 +1,10 @@
+# Netlify-Konfiguration (Prototyping Übung 7)
+# Doku: https://docs.netlify.com/build/configure-builds/file-based-configuration/
+[build]
+  command = "npm run build"
+  publish = "build"
+
+# Beim "Deploy to Netlify"-Button fragt Netlify nach diesen Umgebungsvariablen.
+# Doku: https://docs.netlify.com/deploy/create-deploys/
+[template.environment]
+  DB_URI = "MongoDB Connection String aus Atlas, wie in der .env von Übung 6"
