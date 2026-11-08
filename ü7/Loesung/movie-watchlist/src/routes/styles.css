@@ -1,0 +1,16 @@
+/* Globales Stylesheet, importiert in +layout.svelte (siehe Folie 7, Vorlesung 5) */
+
+body {
+	background-color: #000;
+}
+
+/* Hero-Bereich auf der Startseite */
+.hero {
+	padding: 4rem 0 6rem;
+}
+
+/* Poster im Seitenverhältnis 2:3, Bild wird zugeschnitten statt verzerrt */
+.poster {
+	aspect-ratio: 2 / 3;
+	object-fit: cover;
+}
