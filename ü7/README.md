@@ -6,7 +6,8 @@ aus den zwei Tutorials in Woche 7:
 1. Projekt mit Git versionieren und auf GitHub veröffentlichen (`Tutorial - Git, GitHub, VSCode.pdf`).
 2. Projekt für Netlify konfigurieren und deployen (`Tutorial - Deployment mit SvelteKit und Netlify.pdf`).
 
-Ein Abgabetermin steht nicht im Moodle-Export. Ich kann ihn nicht bestätigen.
+Laut Moodle-Seite (Screenshot vom 8. November 2026) gibst du den Link zu deiner deployten App ab.
+Fällig: Sonntag, 8. November 2026, 23:59. Die Abgabe erfolgt als Texteingabe online.
 
 ## Ordnerstruktur
 
@@ -37,7 +38,32 @@ Hinweise dazu:
   `/.svelte-kit`, `/build`). Sie schliesst ausserdem `.env` aus. Dein DB-Passwort landet also nicht auf GitHub.
 - `@sveltejs/adapter-auto` bleibt installiert, wird aber nicht mehr verwendet. Das Tutorial sagt nichts zum Entfernen.
 
-## Deine Schritte
+## Schnellweg: Deploy direkt aus dem Repository `re-friend-tracker`
+
+Die GitHub-Integration konnte kein neues Repository für dich anlegen. Deshalb liegt die App fertig im
+bestehenden öffentlichen Repository `haredbautista/re-friend-tracker` auf dem Branch
+`claude/uebung-2-loesung-g29m9e`:
+
+- `deploy/` ist eine Kopie von `ü7/Loesung/movie-watchlist` mit einem Pfad ohne Umlaute.
+- `netlify.toml` im Hauptordner sagt Netlify: Base directory `deploy`, Build command `npm run build`,
+  Publish directory `build`. Laut Netlify-Doku überschreiben diese Werte die Einstellungen in der Oberfläche.
+
+Ein frischer Klon dieses Branches baut mit Node 24 fehlerfrei, und die Netlify-Funktion besteht alle 11 Prüfungen.
+
+Deine Schritte auf diesem Weg:
+
+1. MongoDB Atlas: IP-Freigabe `0.0.0.0/0` eintragen, siehe Schritt 2 weiter unten.
+2. Auf https://app.netlify.com mit GitHub anmelden (Tutorial Netlify, Schritt c).
+3. Projekt aus Git importieren, GitHub wählen und Netlify den Zugriff erlauben (Tutorial Netlify, Schritte d bis f).
+4. Das Repository `re-friend-tracker` wählen.
+5. Als Branch `claude/uebung-2-loesung-g29m9e` wählen. Die Build-Einstellungen kommen aus `netlify.toml`.
+6. Umgebungsvariable anlegen: Key `DB_URI`, Value ist dein Connection String aus Atlas mit echtem DB-User und Passwort.
+7. Namen vergeben und deployen. Danach die Adresse `https://<name>.netlify.app` öffnen und `/movies` prüfen.
+8. Die Adresse auf Moodle bei «Texteingabe online» einfügen und abgeben.
+
+Der ausführliche Weg nach Tutorial, mit eigenem Repository über VS Code, folgt hier.
+
+## Deine Schritte (Weg nach Tutorial)
 
 Diese Schritte brauchen deine eigenen Konten bei GitHub, Netlify und MongoDB Atlas. Ich konnte sie nicht für dich ausführen.
 
@@ -146,11 +172,11 @@ Film erfassen, Erfolgsmeldung, Watchlist setzen, Löschen mit Weiterleitung 303 
 
 ## Abgabe
 
-Der Moodle-Export enthält keine Abgabe-Anweisung für Übung 7. Ich kann nicht bestätigen, was abgegeben werden muss.
-Vorbereitet sind:
+Laut Moodle-Seite: «Gib den Link zu deiner deployten App ab.» Fällig am Sonntag, 8. November 2026, 23:59.
+Abgegeben wird also nur die Netlify-Adresse, als Texteingabe online.
 
-- `Abgabe/movie-watchlist.zip`: Projekt ohne `node_modules`, wie bei Übung 5 und 6.
-- `Abgabe/Links.txt`: Vorlage für GitHub- und Netlify-Link.
+- `Abgabe/Links.txt`: Vorlage für den Link.
+- `Abgabe/movie-watchlist.zip`: Projekt ohne `node_modules`, falls zusätzlich der Code verlangt wird.
 
 ## Quellen
 
@@ -159,4 +185,5 @@ Vorbereitet sind:
 - MongoDB Atlas, IP Access List: https://www.mongodb.com/docs/atlas/security/ip-access-list/
 - Netlify, Node-Version festlegen: https://docs.netlify.com/build/configure-builds/manage-dependencies/
 - Netlify, Standard-Software im Build-Image (Node 24): https://docs.netlify.com/build/configure-builds/available-software-at-build-time/
+- GitHub Pages ist reines Static Hosting und kann die Server-Teile der App nicht ausführen: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
 - Netlify-Forum zu festen IP-Adressen, Community-Antwort, keine offizielle Doku: https://answers.netlify.com/t/netlify-functions-ip/54054
