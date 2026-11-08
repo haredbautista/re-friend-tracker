@@ -187,6 +187,24 @@ Die folgenden Meldungen habe ich lokal reproduziert:
 | `MongoServerSelectionError: Server selection timed out` | Datenbank nicht erreichbar | IP Access List in Atlas prüfen (Schritt 2) |
 | `querySrv ENODATA _mongodb._tcp.cluster0.xxxxx.mongodb.net` | Platzhalter statt echtem Connection String | Echten Wert aus Atlas eintragen |
 
+## Live-Prüfung am 8. November 2026
+
+Deployte App: https://warm-cuchufli-8e6b62.netlify.app
+
+Von aussen ohne Netlify-Anmeldung geprüft, nachdem das Projekt auf «Public» gestellt war:
+
+| Prüfung | Ergebnis |
+|---|---|
+| Startseite, `/movies`, `/about`, `/movies/create`, Poster | HTTP 200 |
+| Startseite zeigt Filmanzahl aus der Datenbank | «10 Filme» |
+| `/movies` zeigt alle 10 Demofilme mit Postern | bestanden |
+| Detailseite, unbekannte ID | 200, unbekannte ID 404 |
+| Browsertest: Suche, Detailseite, Film erfassen, Film löschen | bestanden, Testfilme wieder gelöscht |
+
+Auffälligkeit: Nach dem Löschen leitet Netlify auf `/movies?/delete` weiter statt auf `/movies`.
+Netlify hängt den Zusatz der ursprünglichen Anfrage an. Die Seite zeigt trotzdem die normale Filmliste,
+und Neuladen löscht nichts.
+
 ## Was geprüft wurde
 
 Ich habe keinen Zugang zu deinen Konten bei GitHub, Netlify und Atlas. Den echten Deploy auf Netlify konnte

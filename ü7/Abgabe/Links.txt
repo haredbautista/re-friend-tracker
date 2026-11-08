@@ -1,6 +1,4 @@
 Prototyping – Übung 7: Deployment
 Abgabe auf Moodle: Link zur deployten App, fällig Sonntag, 8. November 2026, 23:59 (Texteingabe online)
 
-Netlify-App:       https://<app-name>.netlify.app
-
-Code auf GitHub:   https://github.com/haredbautista/re-friend-tracker/tree/claude/uebung-2-loesung-g29m9e/deploy
+Netlify-App:       https://warm-cuchufli-8e6b62.netlify.app
